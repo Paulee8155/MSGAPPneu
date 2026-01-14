@@ -1,27 +1,17 @@
 export default {
-	// Gespeicherte Aufträge (synchronisiert mit Admin-Seite)
-	auftraege: [
-		// Beispiel-Auftrag für Max Schmidt
-		{
-			id: "A001",
-			datum: "2026-01-14",
-			fahrerId: 1,
-			fahrerName: "Max Schmidt",
-			templateId: "T001",
-			templateName: "Brückenbau Standard",
-			materialienIds: ["M005", "M006", "M012", "M022", "M029", "M034", "M036", "M037", "M041", "M045", "M046", "M049"],
-			status: "offen"
-		}
-	],
+	// Alle Aufträge aus Global Store abrufen (synchronisiert mit Admin-Seite!)
+	auftraege: appsmith.store.auftraege || [],
 
 	// Auftrag für bestimmten Fahrer holen
 	getAuftragFuerFahrer(fahrerId) {
-		return this.auftraege.find(a => a.fahrerId === fahrerId && a.status === "offen");
+		const auftraege = appsmith.store.auftraege || [];
+		return auftraege.find(a => a.fahrerId === fahrerId && a.status === "offen");
 	},
 
 	// Materialien für Auftrag holen (mit vollständigen Daten)
 	getAuftragspositionenMitDetails(auftragId) {
-		const auftrag = this.auftraege.find(a => a.id === auftragId);
+		const auftraege = appsmith.store.auftraege || [];
+		const auftrag = auftraege.find(a => a.id === auftragId);
 		if (!auftrag) return [];
 
 		// Hole die Material-Objekte aus MaterialData
@@ -43,20 +33,24 @@ export default {
 	},
 
 	// Auftrag als gestartet markieren
-	startAuftrag(auftragId) {
-		const auftrag = this.auftraege.find(a => a.id === auftragId);
+	startAuftrag: async (auftragId) => {
+		const auftraege = appsmith.store.auftraege || [];
+		const auftrag = auftraege.find(a => a.id === auftragId);
 		if (auftrag) {
 			auftrag.status = "gestartet";
+			await storeValue("auftraege", auftraege, false);
 			return true;
 		}
 		return false;
 	},
 
 	// Auftrag abschließen
-	closeAuftrag(auftragId) {
-		const auftrag = this.auftraege.find(a => a.id === auftragId);
+	closeAuftrag: async (auftragId) => {
+		const auftraege = appsmith.store.auftraege || [];
+		const auftrag = auftraege.find(a => a.id === auftragId);
 		if (auftrag) {
 			auftrag.status = "abgeschlossen";
+			await storeValue("auftraege", auftraege, false);
 			showAlert("✓ Auftrag " + auftragId + " abgeschlossen!", "success");
 			return true;
 		}
