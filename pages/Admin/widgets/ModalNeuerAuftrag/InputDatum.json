@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 11,
   "boxShadow": "none",
-  "defaultText": "{{new Date().toISOString().split('T')[0]}}",
+  "defaultText": "{{ new Date().toISOString().split('T')[0] }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -17,7 +17,7 @@
       "key": "defaultText"
     }
   ],
-  "dynamicHeight": "FIXED",
+  "dynamicHeight": "AUTO_HEIGHT",
   "dynamicPropertyPathList": [
     {
       "key": "defaultText"
@@ -25,7 +25,7 @@
   ],
   "dynamicTriggerPathList": [],
   "iconAlign": "left",
-  "inputType": "DATE",
+  "inputType": "TEXT",
   "isDisabled": false,
   "isLoading": false,
   "isRequired": false,
@@ -46,6 +46,8 @@
   "mobileRightColumn": 22,
   "mobileTopRow": 7,
   "needsErrorInfo": false,
+  "originalBottomRow": 11,
+  "originalTopRow": 4,
   "parentColumnSpace": 6.9375,
   "parentId": "4a669jx2fv",
   "parentRowSpace": 10,
@@ -53,6 +55,7 @@
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
   "rightColumn": 20,
+  "shouldAllowAutofill": false,
   "showStepArrows": false,
   "topRow": 4,
   "type": "INPUT_WIDGET_V2",
