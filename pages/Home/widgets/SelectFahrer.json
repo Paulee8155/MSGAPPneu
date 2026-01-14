@@ -40,7 +40,7 @@
   "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
-  "isVisible": "{{FahrerData.aktuellerFahrer = null}}",
+  "isVisible": "{{!FahrerData.aktuellerFahrer}}",
   "key": "v9gzvxot6a",
   "labelAlignment": "left",
   "labelPosition": "Top",
