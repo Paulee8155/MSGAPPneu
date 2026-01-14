@@ -15,11 +15,12 @@ export default {
 	],
 	
 	// Neuen Auftrag erstellen
-	createAuftrag(datum, fahrerId, fahrerName, templateId, templateName, materialienIds) {
-		// Nächste Auftragsnummer
-		const nextNum = this.auftraege.length + 1;
+	createAuftrag: async (datum, fahrerId, fahrerName, templateId, templateName, materialienIds) => {
+		// Nächste Auftragsnummer basierend auf bestehenden IDs
+		const existingIds = AuftragsData.auftraege.map(a => parseInt(a.id.substring(1)));
+		const nextNum = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
 		const id = "A" + String(nextNum).padStart(3, "0");
-		
+
 		const auftrag = {
 			id: id,
 			datum: datum,
@@ -30,9 +31,14 @@ export default {
 			materialienIds: materialienIds,
 			status: "offen"
 		};
-		
-		this.auftraege.push(auftrag);
+
+		// WICHTIG: In Appsmith muss das Array neu zugewiesen werden
+		AuftragsData.auftraege = [...AuftragsData.auftraege, auftrag];
+
 		showAlert("✓ Auftrag " + id + " für " + fahrerName + " erstellt!", "success");
+		console.log("Neuer Auftrag erstellt:", auftrag);
+		console.log("Alle Aufträge:", AuftragsData.auftraege);
+
 		return auftrag;
 	},
 	
