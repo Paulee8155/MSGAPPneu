@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "696512d08589eb4b1bb0a7c8_a276888b-b048-4152-a759-113bb17e84d8",
+  "id": "Home_MaterialData",
+  "unpublishedCollection": {
+    "name": "MaterialData",
+    "pageId": "Home",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "materialien",
+        "value": "[{\n  id: \"M001\",\n  name: \"Ballast 500kg\",\n  standort: \"LKW-3\",\n  kategorie: \"Gewicht\",\n  gescannt: false\n}, {\n  id: \"M002\",\n  name: \"Hakenflasche 5t\",\n  standort: \"Lager Halle 2\",\n  kategorie: \"Anbauteil\",\n  gescannt: false\n}, {\n  id: \"M003\",\n  name: \"Verlängerung 3m\",\n  standort: \"LKW-1\",\n  kategorie: \"Gestänge\",\n  gescannt: false\n}, {\n  id: \"M004\",\n  name: \"Abstützplatten Set\",\n  standort: \"Lager Halle 1\",\n  kategorie: \"Zubehör\",\n  gescannt: false\n}, {\n  id: \"M005\",\n  name: \"Sicherungsketten\",\n  standort: \"LKW-3\",\n  kategorie: \"Sicherheit\",\n  gescannt: false\n}]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "696512d08589eb4b1bb0a7c8_c645b7bc-b179-4be9-acae-05aaffaad122",
+  "id": "Home_Scan_Actions",
+  "unpublishedCollection": {
+    "name": "Scan_Actions",
+    "pageId": "Home",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

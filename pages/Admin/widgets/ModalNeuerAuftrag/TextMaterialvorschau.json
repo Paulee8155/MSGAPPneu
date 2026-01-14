@@ -1,0 +1,55 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 15,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "dg11kekvtf",
+  "leftColumn": 0,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 18,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 16,
+  "mobileTopRow": 14,
+  "needsErrorInfo": false,
+  "originalBottomRow": 25,
+  "originalTopRow": 14,
+  "overflow": "NONE",
+  "parentColumnSpace": 6.9375,
+  "parentId": "4a669jx2fv",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 16,
+  "shouldTruncate": false,
+  "text": "{{\"Materialien (\" + (SelectTemplateAuftrag.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplateAuftrag.selectedOptionValue).length : 0) + \"): \" + (SelectTemplateAuftrag.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplateAuftrag.selectedOptionValue).map(m => m.name).join(\", \") : \"Bitte Template wählen\")}}",
+  "textAlign": "LEFT",
+  "textColor": "#231F20",
+  "topRow": 11,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "7q3g3cdg9n",
+  "widgetName": "TextMaterialvorschau"
+}

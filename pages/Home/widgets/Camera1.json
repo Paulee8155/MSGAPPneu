@@ -1,0 +1,58 @@
+{
+  "animateLoading": true,
+  "borderRadius": "1.5rem",
+  "bottomRow": 115,
+  "bottomRowBeforeCollapse": 108,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "defaultCamera": "environment",
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onCodeDetected"
+    }
+  ],
+  "flexVerticalAlignment": "start",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": "{{!!SelectFahrer.selectedOptionValue}}",
+  "key": "llkfhmea6g",
+  "label": "Scan a QR/Barcode",
+  "leftColumn": 38,
+  "mobileBottomRow": 42,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 8,
+  "mobileTopRow": 9,
+  "needsErrorInfo": false,
+  "onCodeDetected": "{{Scan_Actions.scanQRCode();}}",
+  "originalBottomRow": 113,
+  "originalTopRow": 97,
+  "parentColumnSpace": 30.25,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 46,
+  "scannerLayout": "CLICK_TO_SCAN",
+  "topRow": 99,
+  "topRowBeforeCollapse": 92,
+  "type": "CODE_SCANNER_WIDGET",
+  "version": 1,
+  "widgetId": "1vmnzl23nv",
+  "widgetName": "Camera1"
+}

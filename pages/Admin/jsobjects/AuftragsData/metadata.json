@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "696512d08589eb4b1bb0a7c8_470eac19-2a73-4aaf-8353-44baabbf4577",
+  "id": "Admin_AuftragsData",
+  "unpublishedCollection": {
+    "name": "AuftragsData",
+    "pageId": "Admin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "auftraege",
+        "value": "[{\n  id: \"A001\",\n  datum: \"2026-01-14\",\n  fahrerId: 1,\n  fahrerName: \"Max Schmidt\",\n  templateId: \"T001\",\n  templateName: \"Brückenbau Standard\",\n  materialienIds: [\"M002\", \"M007\", \"M012\", \"M016\", \"M020\", \"M023\", \"M024\", \"M006\", \"M011\", \"M022\"],\n  status: \"offen\"\n}]"
+      }
+    ]
+  }
+}

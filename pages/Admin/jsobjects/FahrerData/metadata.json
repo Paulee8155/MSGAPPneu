@@ -1,0 +1,24 @@
+{
+  "gitSyncId": "696512d08589eb4b1bb0a7c8_725148ec-4288-4889-a77d-df67ccb46c44",
+  "id": "Admin_FahrerData",
+  "unpublishedCollection": {
+    "name": "FahrerData",
+    "pageId": "Admin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "fahrer",
+        "value": "[{\n  id: 1,\n  name: \"Max Schmidt\",\n  geraet: \"LKW-7\"\n}, {\n  id: 2,\n  name: \"Andreas Müller\",\n  geraet: \"LKW-3\"\n}, {\n  id: 3,\n  name: \"Mehmet Yilmaz\",\n  geraet: \"LKW-5\"\n}, {\n  id: 4,\n  name: \"Hans Weber\",\n  geraet: \"Kran-2\"\n}, {\n  id: 5,\n  name: \"Thomas Klein\",\n  geraet: \"LKW-1\"\n}]"
+      },
+      {
+        "name": "aktuellerFahrer",
+        "value": "null"
+      },
+      {
+        "name": "aktuellerStandort",
+        "value": "null"
+      }
+    ]
+  }
+}

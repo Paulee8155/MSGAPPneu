@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "696512d08589eb4b1bb0a7c8_184b3cd9-644c-4a7c-ac70-b2d45c459a2e",
+  "id": "Admin_TemplateData",
+  "unpublishedCollection": {
+    "name": "TemplateData",
+    "pageId": "Admin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "templates",
+        "value": "[{\n  id: \"T001\",\n  name: \"Brückenbau Standard\",\n  beschreibung: \"Standard-Equipment für Brückenbau-Einsätze\",\n  materialien: [\"M002\", \"M007\", \"M012\", \"M016\", \"M020\", \"M023\", \"M024\", \"M006\", \"M011\", \"M022\"]\n}, {\n  id: \"T002\",\n  name: \"Turmdrehkran\",\n  beschreibung: \"Equipment für Turmdrehkran-Montage\",\n  materialien: [\"M004\", \"M009\", \"M014\", \"M017\", \"M021\", \"M023\", \"M026\", \"M027\", \"M030\"]\n}, {\n  id: \"T003\",\n  name: \"Schwertransport\",\n  beschreibung: \"Standard-Set für Schwertransporte\",\n  materialien: [\"M005\", \"M010\", \"M015\", \"M018\", \"M021\", \"M024\", \"M028\", \"M029\"]\n}, {\n  id: \"T004\",\n  name: \"Leichter Einsatz\",\n  beschreibung: \"Basis-Equipment für kleinere Einsätze\",\n  materialien: [\"M001\", \"M006\", \"M011\", \"M016\", \"M020\", \"M022\"]\n}]"
+      }
+    ]
+  }
+}
