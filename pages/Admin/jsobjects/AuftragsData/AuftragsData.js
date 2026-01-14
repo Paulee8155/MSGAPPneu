@@ -1,7 +1,7 @@
 export default {
 	// Gespeicherte Aufträge
 	auftraege: [
-		// Beispiel-Auftrag (kann gelöscht werden)
+		// Beispiel-Auftrag für Max Schmidt
 		{
 			id: "A001",
 			datum: "2026-01-14",
@@ -9,7 +9,7 @@ export default {
 			fahrerName: "Max Schmidt",
 			templateId: "T001",
 			templateName: "Brückenbau Standard",
-			materialienIds: ["M002", "M007", "M012", "M016", "M020", "M023", "M024", "M006", "M011", "M022"],
+			materialienIds: ["M005", "M006", "M012", "M022", "M029", "M034", "M036", "M037", "M041", "M045", "M046", "M049"],
 			status: "offen"
 		}
 	],
