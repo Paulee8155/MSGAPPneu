@@ -43,7 +43,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 39,
   "shouldTruncate": false,
-  "text": "{{MaterialData.getProgress().gescannt + \" von \" + MaterialData.getProgress().gesamt + \" gescannt (\" + MaterialData.getProgress().prozent + \"%)\"}}",
+  "text": "{{AuftragsActions.getProgress().gescannt + \" von \" + AuftragsActions.getProgress().gesamt + \" gescannt (\" + AuftragsActions.getProgress().prozent + \"%)\"}}",
   "textAlign": "CENTER",
   "textColor": "#231F20",
   "topRow": 29,

@@ -51,7 +51,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 63,
   "shouldTruncate": false,
-  "text": "{{\"🚛 Dein Fahrzeug: \" + FahrerData.getAktuellesGeraet()}}",
+  "text": "{{\"🚛 Dein Fahrzeug: \" + (FahrerData.getAktuellesGeraet() || \"Nicht ausgewählt\")}}",
   "textAlign": "CENTER",
   "textColor": "#231F20",
   "topRow": 3,

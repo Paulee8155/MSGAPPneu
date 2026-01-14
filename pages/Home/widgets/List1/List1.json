@@ -100,7 +100,7 @@
   "itemSpacing": "10",
   "key": "cmt36egxeu",
   "leftColumn": 8,
-  "listData": "{{MaterialData.materialien}}",
+  "listData": "{{AuftragsActions.getAuftragsMaterialien()}}",
   "mainCanvasId": "ot1thmm8wd",
   "mainContainerId": "haay75ppxh",
   "minWidth": 450,
