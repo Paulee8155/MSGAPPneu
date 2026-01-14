@@ -4,7 +4,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 11,
   "boxShadow": "none",
-  "defaultOptionValue": "GREEN",
+  "defaultOptionValue": "",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -48,7 +48,7 @@
   "parentColumnSpace": 6.9375,
   "parentId": "4a669jx2fv",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
+  "placeholderText": "Fahrer auswählen...",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 42,

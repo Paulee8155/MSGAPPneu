@@ -5,19 +5,27 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 11,
   "boxShadow": "none",
-  "defaultText": "",
+  "defaultText": "{{new Date().toISOString().split('T')[0]}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "defaultText"
+    }
+  ],
   "dynamicTriggerPathList": [],
   "iconAlign": "left",
-  "inputType": "TEXT",
+  "inputType": "DATE",
   "isDisabled": false,
   "isLoading": false,
   "isRequired": false,
