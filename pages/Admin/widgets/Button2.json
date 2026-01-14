@@ -14,7 +14,11 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
@@ -27,6 +31,7 @@
   "mobileRightColumn": 26,
   "mobileTopRow": 75,
   "needsErrorInfo": false,
+  "onClick": "{{showModal('ModalNeuerAuftrag')}}",
   "originalBottomRow": 88,
   "originalTopRow": 75,
   "parentColumnSpace": 30.25,

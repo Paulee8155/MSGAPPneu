@@ -43,7 +43,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 16,
   "shouldTruncate": false,
-  "text": "{{\"Materialien (\" + (SelectTemplateAuftrag.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplateAuftrag.selectedOptionValue).length : 0) + \"): \" + (SelectTemplateAuftrag.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplateAuftrag.selectedOptionValue).map(m => m.name).join(\", \") : \"Bitte Template wählen\")}}",
+  "text": "{{\"Materialien (\" + (SelectTemplate.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplate.selectedOptionValue).length : 0) + \"): \" + (SelectTemplate.selectedOptionValue ? TemplateData.getMaterialienFuerTemplate(SelectTemplate.selectedOptionValue).map(m => m.name).join(\", \") : \"Bitte Template wählen\")}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 11,

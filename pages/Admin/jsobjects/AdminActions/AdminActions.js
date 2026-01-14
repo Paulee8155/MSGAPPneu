@@ -51,8 +51,44 @@ export default {
 	deleteMaterial: async () => {
 		const id = Table1.triggeredRow.id;
 		const name = Table1.triggeredRow.name;
-		
+
 		MaterialData.deleteMaterial(id);
 		showAlert("✓ " + id + " - " + name + " gelöscht!", "success");
+	},
+
+	// Auftrag erstellen
+	createAuftrag: async () => {
+		const fahrerId = SelectFahrer.selectedOptionValue;
+		const templateId = SelectTemplate.selectedOptionValue;
+		const datum = InputDatum.text || new Date().toISOString().split('T')[0];
+
+		if (!fahrerId) {
+			showAlert("⚠️ Bitte Fahrer auswählen!", "warning");
+			return;
+		}
+
+		if (!templateId) {
+			showAlert("⚠️ Bitte Template auswählen!", "warning");
+			return;
+		}
+
+		// Fahrer-Name holen
+		const fahrer = FahrerData.fahrer.find(f => f.id === fahrerId);
+		const fahrerName = fahrer ? fahrer.name : "Unbekannt";
+
+		// Template-Daten holen
+		const template = TemplateData.templates.find(t => t.id === templateId);
+		const templateName = template ? template.name : "Unbekannt";
+		const materialienIds = template ? template.materialien : [];
+
+		// Auftrag erstellen
+		const auftrag = AuftragsData.createAuftrag(datum, fahrerId, fahrerName, templateId, templateName, materialienIds);
+
+		if (auftrag) {
+			closeModal('ModalNeuerAuftrag');
+			resetWidget('SelectFahrer');
+			resetWidget('SelectTemplate');
+			resetWidget('InputDatum');
+		}
 	}
 }

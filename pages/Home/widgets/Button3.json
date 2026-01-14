@@ -31,7 +31,7 @@
   "mobileRightColumn": 61,
   "mobileTopRow": 19,
   "needsErrorInfo": false,
-  "onClick": "{{MaterialData1.reset();}}",
+  "onClick": "{{MaterialData.reset();}}",
   "originalBottomRow": 39,
   "originalTopRow": 35,
   "parentColumnSpace": 30.25,
