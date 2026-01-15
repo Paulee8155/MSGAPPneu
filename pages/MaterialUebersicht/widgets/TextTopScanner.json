@@ -1,6 +1,9 @@
 {
   "animateLoading": true,
-  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#003366",
+  "borderRadius": "0.5rem",
+  "borderWidth": "2",
   "bottomRow": 99,
   "dynamicBindingPathList": [
     {
@@ -8,9 +11,6 @@
     },
     {
       "key": "fontFamily"
-    },
-    {
-      "key": "borderRadius"
     },
     {
       "key": "text"
@@ -40,7 +40,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 52,
   "shouldTruncate": false,
-  "text": "Hello {{appsmith.user.name || appsmith.user.email}}",
+  "text": "{{\"🏆 TOP SCANNER HEUTE:\\n\\n\" + DashboardData.getTopScannerHeute().slice(0,5).map((f, i) => (i === 0 ? \"🥇 \" : i === 1 ? \"🥈 \" : i === 2 ? \"🥉 \" : \"   \") + f.fahrerName + \": \" + f.anzahl + \" Scans\").join(\"\\n\") || \"Noch keine Scans heute\"}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 95,

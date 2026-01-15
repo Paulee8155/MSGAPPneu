@@ -1,5 +1,5 @@
 {
-  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "accentColor": "#003366",
   "animateLoading": true,
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -44,7 +44,7 @@
   "delimiter": ",",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
+      "key": "tableData"
     },
     {
       "key": "borderRadius"
@@ -83,7 +83,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 35,
   "searchKey": "",
-  "tableData": "",
+  "tableData": "{{DashboardData.getRecentScans(15)}}",
   "textSize": "0.875rem",
   "topRow": 78,
   "totalRecordsCount": 0,
