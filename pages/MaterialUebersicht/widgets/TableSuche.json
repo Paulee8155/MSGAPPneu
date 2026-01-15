@@ -1,5 +1,5 @@
 {
-  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "accentColor": "#003366",
   "animateLoading": true,
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -31,9 +31,16 @@
       "menuColor": "{{appsmith.theme.colors.primaryColor}}"
     }
   },
-  "columnOrder": [],
+  "columnOrder": ["id", "name", "kategorie", "standort", "gewicht", "gescannt"],
   "columnUpdatedAt": 1768486726450,
-  "columnWidthMap": {},
+  "columnWidthMap": {
+    "id": 80,
+    "name": 200,
+    "kategorie": 120,
+    "standort": 150,
+    "gewicht": 100,
+    "gescannt": 100
+  },
   "customIsLoading": false,
   "customIsLoadingValue": "",
   "defaultPageSize": 0,
@@ -44,7 +51,25 @@
   "delimiter": ",",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
+      "key": "tableData"
+    },
+    {
+      "key": "primaryColumns.id.computedValue"
+    },
+    {
+      "key": "primaryColumns.name.computedValue"
+    },
+    {
+      "key": "primaryColumns.kategorie.computedValue"
+    },
+    {
+      "key": "primaryColumns.standort.computedValue"
+    },
+    {
+      "key": "primaryColumns.gewicht.computedValue"
+    },
+    {
+      "key": "primaryColumns.gescannt.computedValue"
     },
     {
       "key": "borderRadius"
@@ -54,7 +79,7 @@
     }
   ],
   "dynamicPropertyPathList": [],
-  "enableClientSideSearch": true,
+  "enableClientSideSearch": false,
   "endOfData": false,
   "flexVerticalAlignment": "start",
   "horizontalAlignment": "LEFT",
@@ -62,10 +87,10 @@
   "isLoading": false,
   "isSortable": true,
   "isVisible": true,
-  "isVisibleDownload": true,
+  "isVisibleDownload": false,
   "isVisibleFilters": false,
   "isVisiblePagination": true,
-  "isVisibleSearch": true,
+  "isVisibleSearch": false,
   "key": "vmkxfw3lod",
   "label": "Data",
   "leftColumn": 13,
@@ -80,12 +105,145 @@
   "parentColumnSpace": 30.25,
   "parentId": "0",
   "parentRowSpace": 10,
-  "primaryColumns": {},
+  "primaryColumns": {
+    "id": {
+      "alias": "id",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"id\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "id",
+      "index": 0,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "ID",
+      "originalId": "id",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 80
+    },
+    "name": {
+      "alias": "name",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"name\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "name",
+      "index": 1,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Name",
+      "originalId": "name",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 200
+    },
+    "kategorie": {
+      "alias": "kategorie",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"kategorie\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "kategorie",
+      "index": 2,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Kategorie",
+      "originalId": "kategorie",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 120
+    },
+    "standort": {
+      "alias": "standort",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"standort\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "standort",
+      "index": 3,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Standort",
+      "originalId": "standort",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
+    "gewicht": {
+      "alias": "gewicht",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "number",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"gewicht\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "RIGHT",
+      "id": "gewicht",
+      "index": 4,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Gewicht (kg)",
+      "originalId": "gewicht",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 100
+    },
+    "gescannt": {
+      "alias": "gescannt",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableSuche.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"gescannt\"] ? \"Ja\" : \"Nein\"))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "CENTER",
+      "id": "gescannt",
+      "index": 5,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Gescannt",
+      "originalId": "gescannt",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 100
+    }
+  },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 47,
   "searchKey": "",
-  "tableData": "",
+  "tableData": "{{DashboardData.findeMaterial(InputSuche.text)}}",
   "textSize": "0.875rem",
   "topRow": 33,
   "totalRecordsCount": 0,

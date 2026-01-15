@@ -1,5 +1,5 @@
 {
-  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "accentColor": "#003366",
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -7,9 +7,6 @@
   "boxShadow": "none",
   "defaultText": "",
   "dynamicBindingPathList": [
-    {
-      "key": "accentColor"
-    },
     {
       "key": "borderRadius"
     }
@@ -22,11 +19,12 @@
   "isRequired": false,
   "isVisible": true,
   "key": "f89ciydtnh",
-  "label": "Label",
+  "label": "Material suchen",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelStyle": "",
-  "labelTextSize": "0.875rem",
+  "labelStyle": "BOLD",
+  "labelTextColor": "#000000",
+  "labelTextSize": "1rem",
   "labelWidth": 5,
   "leftColumn": 36,
   "maxDynamicHeight": 9000,
@@ -40,8 +38,9 @@
   "parentColumnSpace": 30.25,
   "parentId": "0",
   "parentRowSpace": 10,
+  "placeholderText": "Material-ID, Name, Kategorie oder Standort eingeben...",
   "renderMode": "CANVAS",
-  "resetOnSubmit": true,
+  "resetOnSubmit": false,
   "responsiveBehavior": "fill",
   "rightColumn": 56,
   "showStepArrows": false,

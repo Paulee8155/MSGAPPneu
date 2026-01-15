@@ -1,5 +1,5 @@
 {
-  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "accentColor": "#003366",
   "animateLoading": true,
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -31,7 +31,7 @@
       "menuColor": "{{appsmith.theme.colors.primaryColor}}"
     }
   },
-  "columnOrder": [],
+  "columnOrder": ["standort", "anzahl"],
   "columnUpdatedAt": 1768486726450,
   "columnWidthMap": {},
   "customIsLoading": false,
@@ -44,7 +44,13 @@
   "delimiter": ",",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
+      "key": "tableData"
+    },
+    {
+      "key": "primaryColumns.standort.computedValue"
+    },
+    {
+      "key": "primaryColumns.anzahl.computedValue"
     },
     {
       "key": "borderRadius"
@@ -80,12 +86,57 @@
   "parentColumnSpace": 30.25,
   "parentId": "0",
   "parentRowSpace": 10,
-  "primaryColumns": {},
+  "primaryColumns": {
+    "standort": {
+      "alias": "standort",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{TableStandorte.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"standort\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "standort",
+      "index": 0,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Standort",
+      "originalId": "standort",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 300
+    },
+    "anzahl": {
+      "alias": "anzahl",
+      "allowCellWrapping": false,
+      "cellBackground": "",
+      "columnType": "number",
+      "computedValue": "{{TableStandorte.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"anzahl\"]))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "RIGHT",
+      "id": "anzahl",
+      "index": 1,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isVisible": true,
+      "label": "Anzahl",
+      "originalId": "anzahl",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 100
+    }
+  },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 41,
   "searchKey": "",
-  "tableData": "",
+  "tableData": "{{DashboardData.getStandortVerteilung()}}",
   "textSize": "0.875rem",
   "topRow": 69,
   "totalRecordsCount": 0,
