@@ -5,7 +5,7 @@ export default {
 
 		const verfuegbar = materialien.filter(m =>
 			!m.gescannt &&
-			(m.standort.includes('Lager') || m.standort.includes('Außenlager'))
+			(m.standort.includes('Lager') || m.standort.includes('Außenlager') || m.standort.includes('Werkstatt'))
 		).length;
 
 		const aufFahrzeugen = materialien.filter(m =>
