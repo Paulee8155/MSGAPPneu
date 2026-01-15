@@ -20,6 +20,43 @@ export default {
 		return AuftragsData.getAuftragProgress(auftrag.id);
 	},
 
+	// Auftrag zurücksetzen (nur Materialien des aktuellen Auftrags)
+	resetAuftrag: async () => {
+		const fahrer = FahrerData.aktuellerFahrer;
+
+		if (!fahrer) {
+			showAlert("⚠️ Bitte wähle zuerst einen Fahrer aus!", "warning");
+			return false;
+		}
+
+		const auftrag = AuftragsData.getAuftragFuerFahrer(fahrer.id);
+		if (!auftrag) {
+			showAlert("⚠️ Kein Auftrag für diesen Fahrer gefunden!", "error");
+			return false;
+		}
+
+		// Hole alle Materialien des Auftrags
+		const materialienIds = auftrag.materialienIds;
+
+		// Reset nur für diese Materialien
+		let resetCount = 0;
+		materialienIds.forEach(matId => {
+			const material = MaterialData.materialien.find(m => m.id === matId);
+			if (material && material.gescannt) {
+				material.gescannt = false;
+				resetCount++;
+			}
+		});
+
+		if (resetCount > 0) {
+			showAlert("✓ " + resetCount + " Materialien zurückgesetzt", "success");
+		} else {
+			showAlert("ℹ️ Keine gescannten Materialien vorhanden", "info");
+		}
+
+		return true;
+	},
+
 	// Losfahren-Funktion
 	losfahren: async () => {
 		const fahrer = FahrerData.aktuellerFahrer;
@@ -43,7 +80,7 @@ export default {
 		}
 
 		// Auftrag als "gestartet" markieren
-		AuftragsData.startAuftrag(auftrag.id);
+		await AuftragsData.startAuftrag(auftrag.id);
 
 		showAlert("✅ Auftrag gestartet! Gute Fahrt, " + fahrer.name + "!", "success");
 		return true;

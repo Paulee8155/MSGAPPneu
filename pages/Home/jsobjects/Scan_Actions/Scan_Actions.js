@@ -20,15 +20,24 @@ export default {
 			return;
 		}
 
+		// Material-Objekt holen
+		const material = MaterialData.materialien.find(m => m.id === materialId);
+		if (!material) {
+			showAlert("⚠️ Material " + materialId + " nicht gefunden!", "error");
+			return;
+		}
+
+		// Prüfen ob bereits gescannt
+		if (material.gescannt) {
+			showAlert("ℹ️ " + material.name + " wurde bereits gescannt", "info");
+			return;
+		}
+
 		// Material scannen
 		const geraet = FahrerData.getAktuellesGeraet();
 		MaterialData.scanMaterial(materialId, geraet);
 
-		// Material-Name holen für besseres Feedback
-		const material = MaterialData.materialien.find(m => m.id === materialId);
-		const materialName = material ? material.name : materialId;
-
-		showAlert("✓ " + materialName + " → " + geraet, "success");
+		showAlert("✓ " + material.name + " → " + geraet, "success");
 	},
 
 	// QR-Scan
@@ -59,14 +68,23 @@ export default {
 			return;
 		}
 
+		// Material-Objekt holen
+		const material = MaterialData.materialien.find(m => m.id === scannedCode);
+		if (!material) {
+			showAlert("⚠️ Material " + scannedCode + " nicht gefunden!", "error");
+			return;
+		}
+
+		// Prüfen ob bereits gescannt
+		if (material.gescannt) {
+			showAlert("ℹ️ " + material.name + " wurde bereits gescannt", "info");
+			return;
+		}
+
 		// Material scannen
 		const geraet = FahrerData.getAktuellesGeraet();
 		MaterialData.scanMaterial(scannedCode, geraet);
 
-		// Material-Name holen für besseres Feedback
-		const material = MaterialData.materialien.find(m => m.id === scannedCode);
-		const materialName = material ? material.name : scannedCode;
-
-		showAlert("✓ " + materialName + " → " + geraet, "success");
+		showAlert("✓ " + material.name + " → " + geraet, "success");
 	}
 }

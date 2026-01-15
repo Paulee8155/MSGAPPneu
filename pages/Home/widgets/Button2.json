@@ -22,7 +22,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": "{{MaterialData.getProgress().gescannt < MaterialData.getProgress().gesamt}}",
+  "isDisabled": "{{!FahrerData.aktuellerFahrer || AuftragsActions.getProgress().gescannt < AuftragsActions.getProgress().gesamt}}",
   "isLoading": false,
   "isVisible": true,
   "key": "h0vrilzekt",
