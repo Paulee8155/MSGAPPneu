@@ -147,33 +147,6 @@ export default {
 				materialien
 			}))
 			.sort((a, b) => a.fahrzeug.localeCompare(b.fahrzeug));
-	},
-
-	// ========== HISTORIE-FUNKTIONEN ==========
-
-	// Letzte Scan-Aktivitäten
-	getRecentScans(limit = 10) {
-		return HistorieData.getRecentScans(limit).map(entry => ({
-			...entry,
-			timestampFormatted: HistorieData.formatTimestamp(entry.timestamp)
-		}));
-	},
-
-	// Top Scanner heute
-	getTopScannerHeute() {
-		return HistorieData.getFahrerAktivitaetHeute();
-	},
-
-	// Material-Historie für Detailansicht
-	getMaterialHistorieFormatted(materialId, limit = 10) {
-		return HistorieData.getMaterialHistorie(materialId, limit).map(entry => ({
-			...entry,
-			timestampFormatted: HistorieData.formatTimestamp(entry.timestamp)
-		}));
-	},
-
-	// Historie-Statistiken
-	getHistorieStats() {
-		return HistorieData.getStatistiken();
 	}
 }
+
