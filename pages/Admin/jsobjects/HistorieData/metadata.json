@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_881da3aa-498c-40b2-a95c-558634349005",
+  "id": "Admin_HistorieData",
+  "unpublishedCollection": {
+    "name": "HistorieData",
+    "pageId": "Admin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "myVar1",
+        "value": "[]"
+      },
+      {
+        "name": "myVar2",
+        "value": "{}"
+      }
+    ]
+  }
+}
