@@ -27,6 +27,10 @@
     {
       "id": "Admin",
       "isDefault": false
+    },
+    {
+      "id": "MaterialUebersicht",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
