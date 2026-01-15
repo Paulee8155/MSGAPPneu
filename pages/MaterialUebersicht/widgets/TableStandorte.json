@@ -1,37 +1,48 @@
 {
-  "accentColor": "#003366",
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
+  "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 60,
+  "borderWidth": "1",
+  "bottomRow": 97,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+  "cachedTableData": {},
   "canFreezeColumn": true,
-  "columnOrder": [
-    "standort",
-    "anzahl"
-  ],
-  "columnUpdatedAt": 1234567890000,
-  "columnWidthMap": {
-    "standort": 300,
-    "anzahl": 100
+  "childStylesheet": {
+    "button": {
+      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "boxShadow": "none",
+      "buttonColor": "{{appsmith.theme.colors.primaryColor}}"
+    },
+    "editActions": {
+      "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+      "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}"
+    },
+    "iconButton": {
+      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "boxShadow": "none",
+      "buttonColor": "{{appsmith.theme.colors.primaryColor}}"
+    },
+    "menuButton": {
+      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "boxShadow": "none",
+      "menuColor": "{{appsmith.theme.colors.primaryColor}}"
+    }
   },
-  "compactMode": "DEFAULT",
+  "columnOrder": [],
+  "columnUpdatedAt": 1768486726450,
+  "columnWidthMap": {},
+  "customIsLoading": false,
+  "customIsLoadingValue": "",
   "defaultPageSize": 0,
   "defaultSelectedRowIndex": 0,
   "defaultSelectedRowIndices": [
     0
   ],
   "delimiter": ",",
-  "displayName": "Table",
   "dynamicBindingPathList": [
-    {
-      "key": "tableData"
-    },
-    {
-      "key": "primaryColumns.standort.computedValue"
-    },
-    {
-      "key": "primaryColumns.anzahl.computedValue"
-    },
     {
       "key": "accentColor"
     },
@@ -43,99 +54,44 @@
     }
   ],
   "dynamicPropertyPathList": [],
-  "dynamicTriggerPathList": [],
   "enableClientSideSearch": true,
-  "enableServerSideFiltering": false,
-  "hideCard": false,
+  "endOfData": false,
+  "flexVerticalAlignment": "start",
   "horizontalAlignment": "LEFT",
-  "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
   "inlineEditingSaveOption": "ROW_LEVEL",
-  "isDeprecated": false,
   "isLoading": false,
   "isSortable": true,
   "isVisible": true,
-  "isVisibleDownload": false,
+  "isVisibleDownload": true,
   "isVisibleFilters": false,
   "isVisiblePagination": true,
   "isVisibleSearch": true,
-  "key": "table_standorte",
+  "key": "vmkxfw3lod",
   "label": "Data",
-  "leftColumn": 0,
+  "leftColumn": 7,
+  "minWidth": 450,
+  "mobileBottomRow": 78,
+  "mobileLeftColumn": 6,
+  "mobileRightColumn": 40,
+  "mobileTopRow": 50,
   "needsErrorInfo": false,
+  "originalBottomRow": 89,
+  "originalTopRow": 61,
   "parentColumnSpace": 30.25,
   "parentId": "0",
   "parentRowSpace": 10,
-  "primaryColumns": {
-    "standort": {
-      "alias": "standort",
-      "allowCellWrapping": false,
-      "cellBackground": "",
-      "columnType": "text",
-      "computedValue": "{{TableStandorte.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"standort\"]))}}",
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "standort",
-      "index": 0,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Standort",
-      "originalId": "standort",
-      "sticky": "",
-      "textColor": "",
-      "textSize": "0.875rem",
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
-    "anzahl": {
-      "alias": "anzahl",
-      "allowCellWrapping": false,
-      "cellBackground": "",
-      "columnType": "number",
-      "computedValue": "{{TableStandorte.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"anzahl\"]))}}",
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "RIGHT",
-      "id": "anzahl",
-      "index": 1,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Anzahl",
-      "originalId": "anzahl",
-      "sticky": "",
-      "textColor": "",
-      "textSize": "0.875rem",
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    }
-  },
+  "primaryColumns": {},
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 64,
+  "rightColumn": 41,
   "searchKey": "",
-  "serverSidePaginationEnabled": false,
-  "tableData": "{{DashboardData.getStandortVerteilung()}}",
+  "tableData": "",
   "textSize": "0.875rem",
-  "topRow": 26,
+  "topRow": 69,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
-  "variant": "DEFAULT",
   "version": 2,
   "verticalAlignment": "CENTER",
-  "widgetId": "table_standorte_widget",
+  "widgetId": "o9c6ap8w7y",
   "widgetName": "TableStandorte"
 }
