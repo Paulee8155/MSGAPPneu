@@ -35,19 +35,7 @@ export default {
 
 		// Material scannen
 		const geraet = FahrerData.getAktuellesGeraet();
-		const vonStandort = material.standort;
 		MaterialData.scanMaterial(materialId, geraet);
-
-		// Historie-Eintrag
-		HistorieData.addScanEntry(
-			materialId,
-			material.name,
-			FahrerData.aktuellerFahrer.id,
-			FahrerData.aktuellerFahrer.name,
-			auftrag.id,
-			vonStandort,
-			geraet
-		);
 
 		showAlert("✓ " + material.name + " → " + geraet, "success");
 	},
@@ -95,19 +83,7 @@ export default {
 
 		// Material scannen
 		const geraet = FahrerData.getAktuellesGeraet();
-		const vonStandort = material.standort;
 		MaterialData.scanMaterial(scannedCode, geraet);
-
-		// Historie-Eintrag
-		HistorieData.addScanEntry(
-			scannedCode,
-			material.name,
-			FahrerData.aktuellerFahrer.id,
-			FahrerData.aktuellerFahrer.name,
-			auftrag.id,
-			vonStandort,
-			geraet
-		);
 
 		showAlert("✓ " + material.name + " → " + geraet, "success");
 	}
