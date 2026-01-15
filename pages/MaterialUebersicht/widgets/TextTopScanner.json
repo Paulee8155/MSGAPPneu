@@ -4,7 +4,7 @@
   "borderColor": "#003366",
   "borderRadius": "0.5rem",
   "borderWidth": "2",
-  "bottomRow": 99,
+  "bottomRow": 101,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -32,6 +32,8 @@
   "mobileRightColumn": 52,
   "mobileTopRow": 95,
   "needsErrorInfo": false,
+  "originalBottomRow": 99,
+  "originalTopRow": 95,
   "overflow": "NONE",
   "parentColumnSpace": 30.25,
   "parentId": "0",

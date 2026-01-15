@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_375a4af7-2a12-404c-b02e-48026a3d5f26",
-  "id": "Admin_HistorieData.myFun1",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_0e8026ce-bca5-4ff0-a60e-75753d2d61a7",
+  "id": "Admin_HistorieData.clearHistory",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -10,7 +10,6 @@
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
-    "clientSideExecution": true,
     "collectionId": "Admin_HistorieData",
     "confirmBeforeExecute": false,
     "datasource": {
@@ -23,8 +22,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "HistorieData.myFun1",
-    "name": "myFun1",
+    "fullyQualifiedName": "HistorieData.clearHistory",
+    "name": "clearHistory",
     "pageId": "Admin",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

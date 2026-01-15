@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_ee8964e6-674d-455c-b6e8-db6a5953718f",
-  "id": "MaterialUebersicht_HistorieData.myFun1",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_632cd35f-947c-47ec-82f3-af4e2e476b16",
+  "id": "MaterialUebersicht_HistorieData.getStatistiken",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -10,7 +10,6 @@
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
-    "clientSideExecution": true,
     "collectionId": "MaterialUebersicht_HistorieData",
     "confirmBeforeExecute": false,
     "datasource": {
@@ -23,8 +22,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "HistorieData.myFun1",
-    "name": "myFun1",
+    "fullyQualifiedName": "HistorieData.getStatistiken",
+    "name": "getStatistiken",
     "pageId": "MaterialUebersicht",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false
