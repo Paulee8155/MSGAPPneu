@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#FFFFFF",
+  "borderRadius": "0.5rem",
+  "borderWidth": "2",
+  "borderColor": "#003366",
+  "bottomRow": 24,
+  "dynamicBindingPathList": [
+    {
+      "key": "text"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "NORMAL",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "dashboard_status",
+  "leftColumn": 0,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "needsErrorInfo": false,
+  "overflow": "NONE",
+  "parentColumnSpace": 30.25,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 64,
+  "text": "{{\"📦 Verfügbar im Lager: \" + DashboardData.getMaterialStatusUebersicht().verfuegbar + \"\\n🚛 Auf Fahrzeugen: \" + DashboardData.getMaterialStatusUebersicht().aufFahrzeugen + \"\\n⚙️ Im Einsatz: \" + DashboardData.getMaterialStatusUebersicht().imEinsatz + \"\\n⚠️ Nicht gefunden: \" + DashboardData.getMaterialStatusUebersicht().nichtGefunden + \"\\n\\nGesamt: \" + DashboardData.getMaterialStatusUebersicht().gesamt + \" Materialien\"}}",
+  "textAlign": "LEFT",
+  "textColor": "#000000",
+  "topRow": 10,
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "dashboard_status_widget",
+  "widgetName": "TextMaterialStatus"
+}
