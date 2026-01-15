@@ -1,9 +1,9 @@
 export default {
-	// Scan-Historie speichern
-	scanHistory: [],
+	// Scan-Historie aus globalem Store
+	scanHistory: appsmith.store.scanHistory || [],
 
-	// Historie-Eintrag hinzufügen
-	addScanEntry(materialId, materialName, fahrerId, fahrerName, auftragId, vonStandort, zuStandort) {
+	// Historie-Eintrag hinzufügen (ASYNC - speichert in Store)
+	addScanEntry: async (materialId, materialName, fahrerId, fahrerName, auftragId, vonStandort, zuStandort) => {
 		const entry = {
 			materialId: materialId,
 			materialName: materialName,
@@ -16,33 +16,41 @@ export default {
 			zuStandort: zuStandort
 		};
 
-		this.scanHistory.unshift(entry); // Neueste zuerst
+		// Hole aktuelle Historie aus Store
+		const currentHistory = appsmith.store.scanHistory || [];
+
+		// Füge neuen Eintrag hinzu (neueste zuerst)
+		const updatedHistory = [entry, ...currentHistory];
 
 		// Limit auf 500 Einträge
-		if (this.scanHistory.length > 500) {
-			this.scanHistory = this.scanHistory.slice(0, 500);
-		}
+		const limitedHistory = updatedHistory.slice(0, 500);
+
+		// Speichere in Store (global über alle Seiten)
+		await storeValue("scanHistory", limitedHistory, false);
 
 		return entry;
 	},
 
 	// Historie für ein bestimmtes Material
 	getMaterialHistorie(materialId, limit = 10) {
-		return this.scanHistory
+		const history = appsmith.store.scanHistory || [];
+		return history
 			.filter(entry => entry.materialId === materialId)
 			.slice(0, limit);
 	},
 
 	// Letzte N Scans global
 	getRecentScans(limit = 20) {
-		return this.scanHistory.slice(0, limit);
+		const history = appsmith.store.scanHistory || [];
+		return history.slice(0, limit);
 	},
 
 	// Fahrer-Aktivität: Wer hat heute wie viel gescannt?
 	getFahrerAktivitaetHeute() {
 		const heute = new Date().toISOString().split('T')[0];
+		const history = appsmith.store.scanHistory || [];
 
-		const heuteScans = this.scanHistory.filter(entry =>
+		const heuteScans = history.filter(entry =>
 			entry.timestamp.startsWith(heute)
 		);
 
@@ -64,28 +72,31 @@ export default {
 
 	// Aktivität für einen bestimmten Fahrer
 	getFahrerHistorie(fahrerId, limit = 20) {
-		return this.scanHistory
+		const history = appsmith.store.scanHistory || [];
+		return history
 			.filter(entry => entry.fahrerId === fahrerId)
 			.slice(0, limit);
 	},
 
 	// Aktivität für einen bestimmten Auftrag
 	getAuftragHistorie(auftragId, limit = 50) {
-		return this.scanHistory
+		const history = appsmith.store.scanHistory || [];
+		return history
 			.filter(entry => entry.auftragId === auftragId)
 			.slice(0, limit);
 	},
 
 	// Statistiken
 	getStatistiken() {
-		const gesamt = this.scanHistory.length;
+		const history = appsmith.store.scanHistory || [];
+		const gesamt = history.length;
 		const heute = new Date().toISOString().split('T')[0];
-		const heuteScans = this.scanHistory.filter(entry =>
+		const heuteScans = history.filter(entry =>
 			entry.timestamp.startsWith(heute)
 		).length;
 
-		const uniqueFahrer = [...new Set(this.scanHistory.map(e => e.fahrerId))].length;
-		const uniqueMaterialien = [...new Set(this.scanHistory.map(e => e.materialId))].length;
+		const uniqueFahrer = [...new Set(history.map(e => e.fahrerId))].length;
+		const uniqueMaterialien = [...new Set(history.map(e => e.materialId))].length;
 
 		return {
 			gesamt,
@@ -96,8 +107,8 @@ export default {
 	},
 
 	// Historie löschen (Admin-Funktion)
-	clearHistory() {
-		this.scanHistory = [];
+	clearHistory: async () => {
+		await storeValue("scanHistory", [], false);
 		showAlert("✓ Historie gelöscht", "success");
 		return true;
 	},

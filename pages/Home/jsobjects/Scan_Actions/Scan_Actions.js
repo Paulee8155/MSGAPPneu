@@ -38,8 +38,8 @@ export default {
 		const vonStandort = material.standort;
 		MaterialData.scanMaterial(materialId, geraet);
 
-		// Historie-Eintrag
-		HistorieData.addScanEntry(
+		// Historie-Eintrag (ASYNC - warten auf Store-Speicherung)
+		await HistorieData.addScanEntry(
 			materialId,
 			material.name,
 			FahrerData.aktuellerFahrer.id,
@@ -98,8 +98,8 @@ export default {
 		const vonStandort = material.standort;
 		MaterialData.scanMaterial(scannedCode, geraet);
 
-		// Historie-Eintrag
-		HistorieData.addScanEntry(
+		// Historie-Eintrag (ASYNC - warten auf Store-Speicherung)
+		await HistorieData.addScanEntry(
 			scannedCode,
 			material.name,
 			FahrerData.aktuellerFahrer.id,
