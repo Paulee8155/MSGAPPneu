@@ -1,10 +1,10 @@
 {
   "animateLoading": true,
   "backgroundColor": "#FFFFFF",
+  "borderColor": "#003366",
   "borderRadius": "0.5rem",
   "borderWidth": "2",
-  "borderColor": "#003366",
-  "bottomRow": 24,
+  "bottomRow": 23,
   "dynamicBindingPathList": [
     {
       "key": "text"
@@ -26,6 +26,8 @@
   "mobileRightColumn": 64,
   "mobileTopRow": 10,
   "needsErrorInfo": false,
+  "originalBottomRow": 24,
+  "originalTopRow": 10,
   "overflow": "NONE",
   "parentColumnSpace": 30.25,
   "parentId": "0",
