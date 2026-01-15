@@ -42,9 +42,9 @@
   "columnUpdatedAt": 1768486726450,
   "columnWidthMap": {
     "gescannt": 100,
-    "gewicht": 100,
+    "gewicht": 140,
     "id": 80,
-    "kategorie": 120,
+    "kategorie": 167,
     "name": 200,
     "standort": 150
   },
@@ -86,6 +86,7 @@
     }
   ],
   "dynamicPropertyPathList": [],
+  "dynamicTriggerPathList": [],
   "enableClientSideSearch": false,
   "endOfData": false,
   "flexVerticalAlignment": "start",
