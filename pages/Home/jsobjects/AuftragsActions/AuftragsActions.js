@@ -1,7 +1,7 @@
 export default {
 	// Aktuellen Auftrag für ausgewählten Fahrer holen
 	getAktuellerAuftrag() {
-		const fahrer = FahrerData.aktuellerFahrer;
+		const fahrer = appsmith.store.aktuellerFahrer;
 		if (!fahrer) return null;
 		return AuftragsData.getAuftragFuerFahrer(fahrer.id);
 	},
@@ -22,7 +22,7 @@ export default {
 
 	// Auftrag zurücksetzen (nur Materialien des aktuellen Auftrags)
 	resetAuftrag: async () => {
-		const fahrer = FahrerData.aktuellerFahrer;
+		const fahrer = appsmith.store.aktuellerFahrer;
 
 		if (!fahrer) {
 			showAlert("⚠️ Bitte wähle zuerst einen Fahrer aus!", "warning");
@@ -38,17 +38,20 @@ export default {
 		// Hole alle Materialien des Auftrags
 		const materialienIds = auftrag.materialienIds;
 
-		// Reset nur für diese Materialien
+		// Reset nur für diese Materialien (aus globalem Store)
+		const materialien = appsmith.store.materialien || [];
 		let resetCount = 0;
 		materialienIds.forEach(matId => {
-			const material = MaterialData.materialien.find(m => m.id === matId);
+			const material = materialien.find(m => m.id === matId);
 			if (material && material.gescannt) {
 				material.gescannt = false;
 				resetCount++;
 			}
 		});
 
+		// Speichere zurück in Store
 		if (resetCount > 0) {
+			await storeValue("materialien", materialien, false);
 			showAlert("✓ " + resetCount + " Materialien zurückgesetzt", "success");
 		} else {
 			showAlert("ℹ️ Keine gescannten Materialien vorhanden", "info");
@@ -59,7 +62,7 @@ export default {
 
 	// Losfahren-Funktion
 	losfahren: async () => {
-		const fahrer = FahrerData.aktuellerFahrer;
+		const fahrer = appsmith.store.aktuellerFahrer;
 		const auftrag = AuftragsData.getAuftragFuerFahrer(fahrer?.id);
 
 		if (!fahrer) {

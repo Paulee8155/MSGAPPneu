@@ -1,7 +1,7 @@
 export default {
 	// Material-Status-Übersicht
 	getMaterialStatusUebersicht() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 
 		const verfuegbar = materialien.filter(m =>
 			!m.gescannt &&
@@ -33,7 +33,7 @@ export default {
 
 	// Standort-Verteilung: Wo ist wie viel Material?
 	getStandortVerteilung() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 		const verteilung = {};
 
 		materialien.forEach(m => {
@@ -56,7 +56,7 @@ export default {
 			return [];
 		}
 
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 		const begriff = suchbegriff.toLowerCase();
 
 		return materialien.filter(m =>
@@ -69,7 +69,7 @@ export default {
 
 	// Kategorie-Breakdown
 	getKategorieUebersicht() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 		const kategorien = {};
 
 		materialien.forEach(m => {
@@ -92,7 +92,7 @@ export default {
 
 	// Gesamtgewicht berechnen
 	getGesamtGewicht() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 		const gesamt = materialien.reduce((sum, m) => sum + (m.gewicht || 0), 0);
 		const imEinsatz = materialien
 			.filter(m => m.gescannt)
@@ -108,7 +108,7 @@ export default {
 
 	// Lager-Status: Was ist wo im Lager?
 	getLagerStatus() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 
 		const halle1 = materialien.filter(m => m.standort === 'Lager Halle 1');
 		const halle2 = materialien.filter(m => m.standort === 'Lager Halle 2');
@@ -125,7 +125,7 @@ export default {
 
 	// Fahrzeug-Status: Was ist auf welchem Fahrzeug?
 	getFahrzeugStatus() {
-		const materialien = MaterialData.materialien;
+		const materialien = appsmith.store.materialien || [];
 		const fahrzeuge = {};
 
 		materialien.forEach(m => {

@@ -1,6 +1,6 @@
 export default {
-	// Umfangreiche Material-Datenbank (50 Materialien mit Gewichten)
-	materialien: [
+	// Initial-Daten (werden beim ersten Laden in Store geschrieben)
+	initialMaterialien: [
 		// ========== GEWICHTE / BALLAST (8 Stück) ==========
 		{id: "M001", name: "Ballast 250kg", standort: "Lager Halle 1", kategorie: "Gewicht", gescannt: false, gewicht: 250},
 		{id: "M002", name: "Ballast 500kg", standort: "LKW-3", kategorie: "Gewicht", gescannt: false, gewicht: 500},
@@ -65,78 +65,110 @@ export default {
 		{id: "M049", name: "Schmierung & Wartung Set", standort: "Lager Halle 1", kategorie: "Zubehör", gescannt: false, gewicht: 22},
 		{id: "M050", name: "Notfall-Reparatur Kit", standort: "LKW-6", kategorie: "Zubehör", gescannt: false, gewicht: 18}
 	],
-	
-	scanMaterial(materialId, neuerStandort) {
-		const index = this.materialien.findIndex(m => m.id === materialId);
+
+	// Materialien aus globalem Store lesen
+	materialien: appsmith.store.materialien || [],
+
+	// Material scannen (ASYNC - speichert in Store)
+	scanMaterial: async (materialId, neuerStandort) => {
+		const materialien = appsmith.store.materialien || [];
+		const index = materialien.findIndex(m => m.id === materialId);
 		if (index !== -1) {
-			this.materialien[index].gescannt = true;
+			materialien[index].gescannt = true;
 			if (neuerStandort) {
-				this.materialien[index].standort = neuerStandort;
+				materialien[index].standort = neuerStandort;
 			}
+			await storeValue("materialien", materialien, false);
 		}
-		return this.materialien;
+		return materialien;
 	},
-	
-	reset() {
-		this.materialien.forEach(m => m.gescannt = false);
-		return this.materialien;
+
+	// Reset alle Scans (ASYNC - speichert in Store)
+	reset: async () => {
+		const materialien = appsmith.store.materialien || [];
+		materialien.forEach(m => m.gescannt = false);
+		await storeValue("materialien", materialien, false);
+		return materialien;
 	},
-	
+
+	// Fortschritt berechnen
 	getProgress() {
-		const gescannt = this.materialien.filter(m => m.gescannt).length;
-		const gesamt = this.materialien.length;
+		const materialien = appsmith.store.materialien || [];
+		const gescannt = materialien.filter(m => m.gescannt).length;
+		const gesamt = materialien.length;
 		return { gescannt, gesamt, prozent: Math.round((gescannt/gesamt)*100) };
 	},
-	
-	addMaterial(id, name, kategorie, standort) {
-		const exists = this.materialien.find(m => m.id === id);
+
+	// Material hinzufügen (ASYNC - speichert in Store)
+	addMaterial: async (id, name, kategorie, standort) => {
+		const materialien = appsmith.store.materialien || [];
+		const exists = materialien.find(m => m.id === id);
 		if (exists) {
 			showAlert("⚠️ Material-ID " + id + " existiert bereits!", "error");
 			return false;
 		}
-		
-		this.materialien.push({
+
+		materialien.push({
 			id: id,
 			name: name,
 			standort: standort,
 			kategorie: kategorie,
-			gescannt: false
+			gescannt: false,
+			gewicht: 0
 		});
-		
+
+		await storeValue("materialien", materialien, false);
 		showAlert("✓ Material " + id + " hinzugefügt!", "success");
 		return true;
 	},
-	
-	editMaterial(id, name, kategorie, standort) {
-		const index = this.materialien.findIndex(m => m.id === id);
+
+	// Material bearbeiten (ASYNC - speichert in Store)
+	editMaterial: async (id, name, kategorie, standort) => {
+		const materialien = appsmith.store.materialien || [];
+		const index = materialien.findIndex(m => m.id === id);
 		if (index !== -1) {
-			this.materialien[index].name = name;
-			this.materialien[index].kategorie = kategorie;
-			this.materialien[index].standort = standort;
+			materialien[index].name = name;
+			materialien[index].kategorie = kategorie;
+			materialien[index].standort = standort;
+			await storeValue("materialien", materialien, false);
 			showAlert("✓ Material " + id + " aktualisiert!", "success");
 			return true;
 		}
 		return false;
 	},
-	
-	deleteMaterial(id) {
-		const index = this.materialien.findIndex(m => m.id === id);
+
+	// Material löschen (ASYNC - speichert in Store)
+	deleteMaterial: async (id) => {
+		const materialien = appsmith.store.materialien || [];
+		const index = materialien.findIndex(m => m.id === id);
 		if (index !== -1) {
-			this.materialien.splice(index, 1);
+			materialien.splice(index, 1);
+			await storeValue("materialien", materialien, false);
 			showAlert("✓ Material " + id + " gelöscht!", "success");
 			return true;
 		}
 		return false;
 	},
-	
+
+	// Nächste freie ID ermitteln
 	getNextId() {
-		const numbers = this.materialien
+		const materialien = appsmith.store.materialien || [];
+		const numbers = materialien
+			.filter(m => m && m.id)
 			.map(m => parseInt(m.id.replace('M', '')))
 			.filter(n => !isNaN(n));
-		
+
 		const maxNumber = numbers.length > 0 ? Math.max(...numbers) : 0;
 		const nextNumber = maxNumber + 1;
-		
+
 		return 'M' + String(nextNumber).padStart(3, '0');
+	},
+
+	// Store initialisieren (einmalig beim ersten Laden aufrufen)
+	initStore: async () => {
+		if (!appsmith.store.materialien || appsmith.store.materialien.length === 0) {
+			await storeValue("materialien", MaterialData.initialMaterialien, false);
+			console.log("✓ MaterialData Store initialisiert mit 50 Materialien");
+		}
 	}
 }

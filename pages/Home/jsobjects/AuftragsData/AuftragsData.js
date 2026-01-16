@@ -14,9 +14,10 @@ export default {
 		const auftrag = auftraege.find(a => a.id === auftragId);
 		if (!auftrag) return [];
 
-		// Hole die Material-Objekte aus MaterialData
+		// Hole die Material-Objekte aus globalem Store
+		const materialien = appsmith.store.materialien || [];
 		return auftrag.materialienIds
-			.map(matId => MaterialData.materialien.find(m => m.id === matId))
+			.map(matId => materialien.find(m => m.id === matId))
 			.filter(m => m !== undefined);
 	},
 

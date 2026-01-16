@@ -1,14 +1,15 @@
 export default {
 	// Button-Scan
 	scanItem: async (materialId) => {
-		// Prüfen ob Fahrer ausgewählt
-		if (!FahrerData.aktuellerFahrer) {
+		// Prüfen ob Fahrer ausgewählt (aus globalem Store)
+		const aktuellerFahrer = appsmith.store.aktuellerFahrer;
+		if (!aktuellerFahrer) {
 			showAlert("⚠️ Bitte erst Fahrer auswählen!", "warning");
 			return;
 		}
 
 		// Prüfen ob Auftrag vorhanden
-		const auftrag = AuftragsData.getAuftragFuerFahrer(FahrerData.aktuellerFahrer.id);
+		const auftrag = AuftragsData.getAuftragFuerFahrer(aktuellerFahrer.id);
 		if (!auftrag) {
 			showAlert("⚠️ Kein Auftrag für diesen Fahrer gefunden!", "error");
 			return;
@@ -20,8 +21,9 @@ export default {
 			return;
 		}
 
-		// Material-Objekt holen
-		const material = MaterialData.materialien.find(m => m.id === materialId);
+		// Material-Objekt holen (aus globalem Store)
+		const materialien = appsmith.store.materialien || [];
+		const material = materialien.find(m => m.id === materialId);
 		if (!material) {
 			showAlert("⚠️ Material " + materialId + " nicht gefunden!", "error");
 			return;
@@ -33,17 +35,17 @@ export default {
 			return;
 		}
 
-		// Material scannen
+		// Material scannen (ASYNC - warten auf Store-Speicherung)
 		const geraet = FahrerData.getAktuellesGeraet();
 		const vonStandort = material.standort;
-		MaterialData.scanMaterial(materialId, geraet);
+		await MaterialData.scanMaterial(materialId, geraet);
 
 		// Historie-Eintrag (ASYNC - warten auf Store-Speicherung)
 		await HistorieData.addScanEntry(
 			materialId,
 			material.name,
-			FahrerData.aktuellerFahrer.id,
-			FahrerData.aktuellerFahrer.name,
+			aktuellerFahrer.id,
+			aktuellerFahrer.name,
 			auftrag.id,
 			vonStandort,
 			geraet
@@ -54,14 +56,15 @@ export default {
 
 	// QR-Scan
 	scanQRCode: async () => {
-		// Prüfen ob Fahrer ausgewählt
-		if (!FahrerData.aktuellerFahrer) {
+		// Prüfen ob Fahrer ausgewählt (aus globalem Store)
+		const aktuellerFahrer = appsmith.store.aktuellerFahrer;
+		if (!aktuellerFahrer) {
 			showAlert("⚠️ Bitte erst Fahrer auswählen!", "warning");
 			return;
 		}
 
 		// Prüfen ob Auftrag vorhanden
-		const auftrag = AuftragsData.getAuftragFuerFahrer(FahrerData.aktuellerFahrer.id);
+		const auftrag = AuftragsData.getAuftragFuerFahrer(aktuellerFahrer.id);
 		if (!auftrag) {
 			showAlert("⚠️ Kein Auftrag für diesen Fahrer gefunden!", "error");
 			return;
@@ -80,8 +83,9 @@ export default {
 			return;
 		}
 
-		// Material-Objekt holen
-		const material = MaterialData.materialien.find(m => m.id === scannedCode);
+		// Material-Objekt holen (aus globalem Store)
+		const materialien = appsmith.store.materialien || [];
+		const material = materialien.find(m => m.id === scannedCode);
 		if (!material) {
 			showAlert("⚠️ Material " + scannedCode + " nicht gefunden!", "error");
 			return;
@@ -93,17 +97,17 @@ export default {
 			return;
 		}
 
-		// Material scannen
+		// Material scannen (ASYNC - warten auf Store-Speicherung)
 		const geraet = FahrerData.getAktuellesGeraet();
 		const vonStandort = material.standort;
-		MaterialData.scanMaterial(scannedCode, geraet);
+		await MaterialData.scanMaterial(scannedCode, geraet);
 
 		// Historie-Eintrag (ASYNC - warten auf Store-Speicherung)
 		await HistorieData.addScanEntry(
 			scannedCode,
 			material.name,
-			FahrerData.aktuellerFahrer.id,
-			FahrerData.aktuellerFahrer.name,
+			aktuellerFahrer.id,
+			aktuellerFahrer.name,
 			auftrag.id,
 			vonStandort,
 			geraet

@@ -22,35 +22,46 @@ export default {
 		{ id: 14, name: "Oliver Richter", geraet: "Kran-4", typ: "Kran", maxZuladung: 5000 },
 		{ id: 15, name: "Frank Neumann", geraet: "Kran-5", typ: "Kran", maxZuladung: 5000 }
 	],
-	
-	// Aktuell ausgewählter Fahrer
-	aktuellerFahrer: null,
-	
-	// Aktuell ausgewählter Standort für Scan
-	aktuellerStandort: null,
-	
-	// Fahrer auswählen
-	setFahrer(fahrerId) {
-		const fahrer = this.fahrer.find(f => f.id === fahrerId);
+
+	// Aktuell ausgewählter Fahrer aus globalem Store
+	aktuellerFahrer: appsmith.store.aktuellerFahrer || null,
+
+	// Aktuell ausgewählter Standort aus globalem Store
+	aktuellerStandort: appsmith.store.aktuellerStandort || null,
+
+	// Fahrer auswählen (ASYNC - speichert in Store)
+	setFahrer: async (fahrerId) => {
+		const fahrer = FahrerData.fahrer.find(f => f.id === fahrerId);
 		if (fahrer) {
-			this.aktuellerFahrer = fahrer;
+			await storeValue("aktuellerFahrer", fahrer, false);
 			showAlert("✓ Willkommen " + fahrer.name + "!", "success");
 			return fahrer;
 		}
 		return null;
 	},
-	
+
 	// Aktuelles Gerät holen
 	getAktuellesGeraet() {
-		if (this.aktuellerFahrer) {
-			return this.aktuellerFahrer.geraet;
+		const fahrer = appsmith.store.aktuellerFahrer;
+		if (fahrer) {
+			return fahrer.geraet;
 		}
 		return null;
 	},
-	
-	// Standort setzen für Beladen/Entladen
-	setStandort(standortCode) {
-		this.aktuellerStandort = standortCode;
+
+	// Aktueller Fahrer aus Store holen
+	getAktuellerFahrer() {
+		return appsmith.store.aktuellerFahrer || null;
+	},
+
+	// Standort setzen für Beladen/Entladen (ASYNC - speichert in Store)
+	setStandort: async (standortCode) => {
+		await storeValue("aktuellerStandort", standortCode, false);
 		showAlert("📍 Standort: " + standortCode, "info");
+	},
+
+	// Aktueller Standort aus Store holen
+	getAktuellerStandort() {
+		return appsmith.store.aktuellerStandort || null;
 	}
 }
