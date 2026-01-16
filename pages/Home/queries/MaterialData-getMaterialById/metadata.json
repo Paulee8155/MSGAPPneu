@@ -1,12 +1,16 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_7d5bfef4-b392-4e16-b7d8-1580b1b13efe",
-  "id": "Home_MaterialData.initStore",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_89222424-b3da-4e19-91e7-ca0c712c9652",
+  "id": "Home_MaterialData.getMaterialById",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
     "actionConfiguration": {
       "encodeParamsToggle": true,
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "id"
+        }
+      ],
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
@@ -22,8 +26,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "MaterialData.initStore",
-    "name": "initStore",
+    "fullyQualifiedName": "MaterialData.getMaterialById",
+    "name": "getMaterialById",
     "pageId": "Home",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

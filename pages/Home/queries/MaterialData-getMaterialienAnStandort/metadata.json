@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "696512d08589eb4b1bb0a7c8_32754d4c-98bc-45cc-8bd4-5e2df65d8327",
-  "id": "Home_MaterialData.addMaterial",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_e51a632d-b814-453a-8b5e-f4998977a772",
+  "id": "Home_MaterialData.getMaterialienAnStandort",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -8,16 +8,7 @@
       "encodeParamsToggle": true,
       "jsArguments": [
         {
-          "name": "id"
-        },
-        {
-          "name": "name"
-        },
-        {
-          "name": "kategorie"
-        },
-        {
-          "name": "standort"
+          "name": "locationId"
         }
       ],
       "paginationType": "NONE",
@@ -35,8 +26,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "MaterialData.addMaterial",
-    "name": "addMaterial",
+    "fullyQualifiedName": "MaterialData.getMaterialienAnStandort",
+    "name": "getMaterialienAnStandort",
     "pageId": "Home",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

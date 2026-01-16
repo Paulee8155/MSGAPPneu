@@ -2,7 +2,7 @@
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "24",
-  "bottomRow": 30,
+  "bottomRow": 148,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -31,7 +31,7 @@
   "mobileRightColumn": 33,
   "mobileTopRow": 11,
   "needsErrorInfo": false,
-  "originalBottomRow": 29,
+  "originalBottomRow": 30,
   "originalTopRow": 21,
   "overflow": "NONE",
   "parentColumnSpace": 30.25,
@@ -44,7 +44,7 @@
   "text": "AUFTRAG #2025-001 - Material Check",
   "textAlign": "CENTER",
   "textColor": "#231F20",
-  "topRow": 21,
+  "topRow": 59,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

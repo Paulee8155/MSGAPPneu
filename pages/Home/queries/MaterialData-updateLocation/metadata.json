@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "696512d08589eb4b1bb0a7c8_811f3cf4-d9eb-42ae-ba3e-e4b95b7938b3",
-  "id": "Home_MaterialData.deleteMaterial",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_0f2f8617-8ec2-456b-85b2-d273cf7555c5",
+  "id": "Home_MaterialData.updateLocation",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -8,7 +8,13 @@
       "encodeParamsToggle": true,
       "jsArguments": [
         {
-          "name": "id"
+          "name": "materialId"
+        },
+        {
+          "name": "newLocationId"
+        },
+        {
+          "name": "benutzer"
         }
       ],
       "paginationType": "NONE",
@@ -26,8 +32,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "MaterialData.deleteMaterial",
-    "name": "deleteMaterial",
+    "fullyQualifiedName": "MaterialData.updateLocation",
+    "name": "updateLocation",
     "pageId": "Home",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false
