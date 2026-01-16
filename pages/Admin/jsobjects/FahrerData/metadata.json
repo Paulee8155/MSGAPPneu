@@ -13,11 +13,11 @@
       },
       {
         "name": "aktuellerFahrer",
-        "value": "null"
+        "value": "appsmith.store.aktuellerFahrer || null"
       },
       {
         "name": "aktuellerStandort",
-        "value": "null"
+        "value": "appsmith.store.aktuellerStandort || null"
       }
     ]
   }

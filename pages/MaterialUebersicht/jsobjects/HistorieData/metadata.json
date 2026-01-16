@@ -9,7 +9,7 @@
     "variables": [
       {
         "name": "scanHistory",
-        "value": "[]"
+        "value": "appsmith.store.scanHistory || []"
       }
     ]
   }
