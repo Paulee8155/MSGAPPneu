@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_047b6181-0a08-465e-9ae4-e61a89dc1512",
-  "id": "Admin_MaterialData.updateLocation",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_4698f19e-a8f7-4f74-a35a-3e3d648da006",
+  "id": "Admin_MaterialData.addMaterial",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -8,13 +8,16 @@
       "encodeParamsToggle": true,
       "jsArguments": [
         {
-          "name": "materialId"
+          "name": "id"
         },
         {
-          "name": "newLocationId"
+          "name": "name"
         },
         {
-          "name": "benutzer"
+          "name": "kategorie"
+        },
+        {
+          "name": "standort"
         }
       ],
       "paginationType": "NONE",
@@ -32,8 +35,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "MaterialData.updateLocation",
-    "name": "updateLocation",
+    "fullyQualifiedName": "MaterialData.addMaterial",
+    "name": "addMaterial",
     "pageId": "Admin",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "getAuftraege",
     "pageId": "Admin",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

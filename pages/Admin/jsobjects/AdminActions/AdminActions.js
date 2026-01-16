@@ -1,94 +1,43 @@
 export default {
-	// Material hinzufügen
 	addMaterial: async () => {
-		const id = InputMaterialID.text;
-		const name = InputName.text;
-		const kategorie = SelectKategorie.selectedOptionValue;
-		const standort = InputStandort.text;
-
-		if (!name || name.trim() === "") {
-			showAlert("⚠️ Bitte Name eingeben!", "warning");
-			return;
-		}
-
-		if (!kategorie) {
-			showAlert("⚠️ Bitte Kategorie auswählen!", "warning");
-			return;
-		}
-
-		const success = await MaterialData.addMaterial(id, name, kategorie, standort);
-
-		if (success) {
-			closeModal('ModalNeuesMaterial');
-			resetWidget('InputName');
-			resetWidget('InputStandort');
-			resetWidget('SelectKategorie');
-		}
+		const success = await MaterialData.addMaterial(InputMaterialID.text, InputName.text, SelectKategorie.selectedOptionValue, InputStandort.text);
+		if (success) closeModal('ModalNeuesMaterial');
 	},
 
-	// Material bearbeiten - MIT RICHTIGEN NAMEN!
 	editMaterial: async () => {
-		const id = Table1.triggeredRow.id;
-		const name = InputNameCopy.text;
-		const kategorie = SelectKategorieCopy.selectedOptionValue;
-		const standort = InputStandortCopy.text;
-
-		if (!name || name.trim() === "") {
-			showAlert("⚠️ Bitte Name eingeben!", "warning");
-			return;
-		}
-
-		if (!kategorie) {
-			showAlert("⚠️ Bitte Kategorie auswählen!", "warning");
-			return;
-		}
-
-		await MaterialData.editMaterial(id, name, kategorie, standort);
+		await MaterialData.editMaterial(Table1.selectedRow.id, InputNameCopy.text, SelectKategorieCopy.selectedOptionValue, InputStandortCopy.text);
 		closeModal('ModalBearbeiten');
 	},
 
-	// Material löschen
 	deleteMaterial: async () => {
-		const id = Table1.triggeredRow.id;
-		const name = Table1.triggeredRow.name;
-
-		await MaterialData.deleteMaterial(id);
-		showAlert("✓ " + id + " - " + name + " gelöscht!", "success");
+		await MaterialData.deleteMaterial(Table1.selectedRow.id);
 	},
 
-	// Auftrag erstellen
 	createAuftrag: async () => {
 		const fahrerId = SelectFahrer.selectedOptionValue;
-		const templateId = SelectTemplate.selectedOptionValue;
-		const datum = InputDatum.text || new Date().toISOString().split('T')[0];
-
-		if (!fahrerId) {
-			showAlert("⚠️ Bitte Fahrer auswählen!", "warning");
+		const templateAuftragId = SelectTemplate.selectedOptionValue;
+		const newId = "A" + Math.floor(Math.random() * 10000); 
+		
+		if (!fahrerId || !templateAuftragId) {
+			showAlert("⚠️ Bitte Fahrer und Vorlage-Auftrag auswählen!", "warning");
 			return;
 		}
 
-		if (!templateId) {
-			showAlert("⚠️ Bitte Template auswählen!", "warning");
-			return;
-		}
+		// Hole die Materialliste aus dem als "Template" gewählten Auftrag im Sheet
+		const vorlage = (getAuftraege.data || []).find(a => a.id === templateAuftragId);
+		const materialienString = vorlage ? vorlage.benoetigteMaterialien : "";
 
-		// Fahrer-Name holen
-		const fahrer = FahrerData.fahrer.find(f => f.id === fahrerId);
-		const fahrerName = fahrer ? fahrer.name : "Unbekannt";
+		await insertAuftrag.run({
+			id: newId,
+			name: vorlage ? "Kopie von " + vorlage.name : "Neuer Auftrag",
+			status: "Aktiv",
+			benoetigteMaterialien: materialienString,
+			zielKranId: "LOC_KRAN_K1",
+			zugewiesenerAuflieger: "LOC_AUFL_A1" 
+		});
 
-		// Template-Daten holen
-		const template = TemplateData.templates.find(t => t.id === templateId);
-		const templateName = template ? template.name : "Unbekannt";
-		const materialienIds = template ? template.materialien : [];
-
-		// Auftrag erstellen (ASYNC)
-		const auftrag = await AuftragsData.createAuftrag(datum, fahrerId, fahrerName, templateId, templateName, materialienIds);
-
-		if (auftrag) {
-			closeModal('ModalNeuerAuftrag');
-			resetWidget('SelectFahrer');
-			resetWidget('SelectTemplate');
-			resetWidget('InputDatum');
-		}
+		await getAuftraege.run();
+		closeModal('ModalNeuerAuftrag');
+		showAlert("✅ Auftrag " + newId + " erstellt!", "success");
 	}
 }

@@ -36,7 +36,7 @@
   "mobileRightColumn": 60,
   "mobileTopRow": 21,
   "needsErrorInfo": false,
-  "onClick": "{{MaterialData.initStore()}}",
+  "onClick": "{{MaterialData.refresh();}}",
   "parentColumnSpace": 34.640625,
   "parentId": "0",
   "parentRowSpace": 10,

@@ -2,9 +2,9 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 11,
+  "bottomRow": 20,
   "boxShadow": "none",
-  "defaultOptionValue": "",
+  "defaultOptionValue": "{{ ((options, serverSideFiltering) => (  Table1.triggeredRow.currentLocationId ))(SelectStandortCopy.options, SelectStandortCopy.serverSideFiltering) }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -14,6 +14,9 @@
     },
     {
       "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -28,35 +31,35 @@
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "nqm550drbe",
+  "key": "oxddqu3xjl",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Template",
+  "labelText": "Aktueller Standort",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 44,
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 12,
-  "mobileLeftColumn": 45,
-  "mobileRightColumn": 64,
-  "mobileTopRow": 5,
+  "mobileBottomRow": 28,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 21,
+  "mobileTopRow": 21,
   "needsErrorInfo": false,
   "optionLabel": "label",
-  "optionValue": "label",
-  "parentColumnSpace": 6.9375,
-  "parentId": "4a669jx2fv",
+  "optionValue": "value",
+  "parentColumnSpace": 7.6875,
+  "parentId": "4sggbbw5wc",
   "parentRowSpace": 10,
-  "placeholderText": "Template auswählen...",
+  "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 63,
+  "rightColumn": 28,
   "serverSideFiltering": false,
-  "sourceData": "{{getAuftraege.data.map(a => ({label: a.name, value: a.id}))}}",
-  "topRow": 4,
+  "sourceData": "{{ StandortData.standorte.map(s => ({ label: s.bezeichnung, value: s.id })) }}",
+  "topRow": 13,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "i6tq16c1li",
-  "widgetName": "SelectTemplate"
+  "widgetId": "3fnm52ebk8",
+  "widgetName": "SelectStandortCopy"
 }

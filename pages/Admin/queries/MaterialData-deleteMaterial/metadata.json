@@ -1,12 +1,16 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_2f704afe-4cfe-461a-a7c5-14dbf413acaa",
-  "id": "Admin_MaterialData.refresh",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_69334422-f5b0-48f1-8d93-629d4836eec4",
+  "id": "Admin_MaterialData.deleteMaterial",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
     "actionConfiguration": {
       "encodeParamsToggle": true,
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "id"
+        }
+      ],
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
@@ -22,8 +26,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "MaterialData.refresh",
-    "name": "refresh",
+    "fullyQualifiedName": "MaterialData.deleteMaterial",
+    "name": "deleteMaterial",
     "pageId": "Admin",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

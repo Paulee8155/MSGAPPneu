@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_16ab331c-4280-41c9-a3d9-9d4baf3e62eb",
-  "id": "Admin_getMaterialien",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_d1b3e158-531e-4a1d-86c5-f604134b880e",
+  "id": "Admin_insertMaterial",
   "pluginId": "google-sheets-plugin",
   "pluginType": "SAAS",
   "unpublishedAction": {
@@ -8,7 +8,7 @@
       "encodeParamsToggle": true,
       "formData": {
         "command": {
-          "data": "FETCH_MANY"
+          "data": "INSERT_ONE"
         },
         "entityType": {
           "data": "ROWS"
@@ -28,6 +28,9 @@
         "range": {
           "data": ""
         },
+        "rowObjects": {
+          "data": "{\n  \"id\": \"{{this.params.id}}\",\n  \"name\": \"{{this.params.name}}\",\n  \"bildUrl\": \"{{this.params.bildUrl}}\",\n  \"currentLocationId\": \"{{this.params.currentLocationId}}\",\n  \"status\": \"{{this.params.status}}\",\n  \"kategorie\": \"{{this.params.kategorie}}\",\n  \"gewicht\": \"{{this.params.gewicht}}\"\n}"
+        },
         "sheetName": {
           "data": "Materialien"
         },
@@ -37,24 +40,11 @@
         "smartSubstitution": {
           "data": true
         },
-        "sortBy": {
-          "data": [
-            {
-              "column": "",
-              "order": "Ascending"
-            }
-          ]
-        },
         "tableHeaderIndex": {
           "data": "1"
         },
         "where": {
           "data": {
-            "children": [
-              {
-                "condition": "LT"
-              }
-            ],
             "condition": "AND"
           }
         }
@@ -69,10 +59,14 @@
       "name": "GoogleSheets_MSG",
       "pluginId": "google-sheets-plugin"
     },
-    "dynamicBindingPathList": [],
-    "name": "getMaterialien",
+    "dynamicBindingPathList": [
+      {
+        "key": "formData.rowObjects.data"
+      }
+    ],
+    "name": "insertMaterial",
     "pageId": "Admin",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

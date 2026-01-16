@@ -15,6 +15,11 @@
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "dynamicTriggerPathList": [
     {
       "key": "onClick"
@@ -32,7 +37,7 @@
   "mobileRightColumn": 52,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
-  "onClick": "{{Scan_Actions.scanItem(currentItem.id);}}",
+  "onClick": "{{Scan_Actions.onScan(currentItem.id);}}",
   "parentColumnSpace": 10.90625,
   "parentId": "rhxgbl6yxh",
   "parentRowSpace": 10,

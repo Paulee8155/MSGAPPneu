@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "1.5rem",
-  "bottomRow": 113,
+  "bottomRow": 114,
   "boxShadow": "none",
   "buttonColor": "#003366",
   "buttonVariant": "PRIMARY",
@@ -14,6 +14,9 @@
   "dynamicPropertyPathList": [
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "onClick"
     }
   ],
   "dynamicTriggerPathList": [
@@ -22,7 +25,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": "{{!FahrerData.aktuellerFahrer || AuftragsActions.getProgress().gescannt < AuftragsActions.getProgress().gesamt}}",
+  "isDisabled": "{{\n!FahrerData.aktuellerAuflieger || \nAuftragsData.getProgress(AuftragsData.getAktivAuftragFuerAuflieger(FahrerData.aktuellerAuflieger.id)?.id, FahrerData.aktuellerAuflieger.id).prozent < 100\n}}",
   "isLoading": false,
   "isVisible": true,
   "key": "h0vrilzekt",
@@ -33,9 +36,9 @@
   "mobileRightColumn": 46,
   "mobileTopRow": 98,
   "needsErrorInfo": false,
-  "onClick": "{{AuftragsActions.losfahren();}}",
-  "originalBottomRow": 113,
-  "originalTopRow": 97,
+  "onClick": "{{AuftragsData.checkAuftragAbschluss(AuftragsData.getAktivAuftragFuerAuflieger(FahrerData.aktuellerAuflieger.id)?.id);}}",
+  "originalBottomRow": 114,
+  "originalTopRow": 98,
   "parentColumnSpace": 30.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -46,7 +49,7 @@
   "responsiveBehavior": "hug",
   "rightColumn": 38,
   "text": "Losfahren",
-  "topRow": 97,
+  "topRow": 98,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "qgxjl5v75i",
