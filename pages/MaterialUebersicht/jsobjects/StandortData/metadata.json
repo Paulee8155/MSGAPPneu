@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_798d8f17-05ab-48e0-95b4-7cbe2d6d6420",
+  "id": "MaterialUebersicht_StandortData",
+  "unpublishedCollection": {
+    "name": "StandortData",
+    "pageId": "MaterialUebersicht",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "myVar1",
+        "value": "[]"
+      },
+      {
+        "name": "myVar2",
+        "value": "{}"
+      }
+    ]
+  }
+}

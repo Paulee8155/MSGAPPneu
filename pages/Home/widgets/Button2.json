@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "1.5rem",
-  "bottomRow": 267,
+  "bottomRow": 113,
   "boxShadow": "none",
   "buttonColor": "#003366",
   "buttonVariant": "PRIMARY",
@@ -46,7 +46,7 @@
   "responsiveBehavior": "hug",
   "rightColumn": 38,
   "text": "Losfahren",
-  "topRow": 251,
+  "topRow": 97,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "qgxjl5v75i",

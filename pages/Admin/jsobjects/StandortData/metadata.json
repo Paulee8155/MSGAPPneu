@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_df410ff1-d818-47c2-806c-1ed3248320c0",
+  "id": "Admin_StandortData",
+  "unpublishedCollection": {
+    "name": "StandortData",
+    "pageId": "Admin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "myVar1",
+        "value": "[]"
+      },
+      {
+        "name": "myVar2",
+        "value": "{}"
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "1.5rem",
-  "bottomRow": 267,
+  "bottomRow": 113,
   "bottomRowBeforeCollapse": 108,
   "boxShadow": "none",
   "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
@@ -49,7 +49,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "scannerLayout": "CLICK_TO_SCAN",
-  "topRow": 251,
+  "topRow": 97,
   "topRowBeforeCollapse": 92,
   "type": "CODE_SCANNER_WIDGET",
   "version": 1,

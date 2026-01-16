@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 188,
+  "bottomRow": 34,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -46,7 +46,7 @@
   "text": "{{AuftragsActions.getProgress().gescannt + \" von \" + AuftragsActions.getProgress().gesamt + \" gescannt (\" + AuftragsActions.getProgress().prozent + \"%)\"}}",
   "textAlign": "CENTER",
   "textColor": "#231F20",
-  "topRow": 148,
+  "topRow": 30,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
