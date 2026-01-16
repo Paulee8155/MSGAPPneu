@@ -507,7 +507,7 @@
   },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 48,
+  "rightColumn": 55,
   "searchKey": "",
   "tableData": "{{MaterialData.materialien}}",
   "textSize": "0.875rem",
