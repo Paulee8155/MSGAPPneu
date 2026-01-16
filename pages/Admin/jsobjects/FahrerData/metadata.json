@@ -9,15 +9,15 @@
     "variables": [
       {
         "name": "fahrer",
-        "value": "[{\n  id: 1,\n  name: \"Max Schmidt\",\n  geraet: \"LKW-1\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 2,\n  name: \"Andreas Müller\",\n  geraet: \"LKW-2\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 3,\n  name: \"Thomas Klein\",\n  geraet: \"LKW-3\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 4,\n  name: \"Mehmet Yilmaz\",\n  geraet: \"LKW-4\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 5,\n  name: \"Stefan Wagner\",\n  geraet: \"LKW-5\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 6,\n  name: \"Marco Bauer\",\n  geraet: \"LKW-6\",\n  typ: \"LKW\",\n  maxZuladung: 12000\n}, {\n  id: 7,\n  name: \"Peter Koch\",\n  geraet: \"Auflieger-A1\",\n  typ: \"Auflieger\",\n  maxZuladung: 24000\n}, {\n  id: 8,\n  name: \"Klaus Fischer\",\n  geraet: \"Auflieger-A2\",\n  typ: \"Auflieger\",\n  maxZuladung: 24000\n}, {\n  id: 9,\n  name: \"Jürgen Meyer\",\n  geraet: \"Auflieger-A3\",\n  typ: \"Auflieger\",\n  maxZuladung: 24000\n}, {\n  id: 10,\n  name: \"Ralf Schmitt\",\n  geraet: \"Auflieger-A4\",\n  typ: \"Auflieger\",\n  maxZuladung: 24000\n}, {\n  id: 11,\n  name: \"Hans Weber\",\n  geraet: \"Kran-1\",\n  typ: \"Kran\",\n  maxZuladung: 5000\n}, {\n  id: 12,\n  name: \"Bernd Hoffmann\",\n  geraet: \"Kran-2\",\n  typ: \"Kran\",\n  maxZuladung: 5000\n}, {\n  id: 13,\n  name: \"Martin Schulz\",\n  geraet: \"Kran-3\",\n  typ: \"Kran\",\n  maxZuladung: 5000\n}, {\n  id: 14,\n  name: \"Oliver Richter\",\n  geraet: \"Kran-4\",\n  typ: \"Kran\",\n  maxZuladung: 5000\n}, {\n  id: 15,\n  name: \"Frank Neumann\",\n  geraet: \"Kran-5\",\n  typ: \"Kran\",\n  maxZuladung: 5000\n}]"
+        "value": "[{\n  id: 1,\n  name: \"Max Schmidt\"\n}, {\n  id: 2,\n  name: \"Andreas Mueller\"\n}, {\n  id: 3,\n  name: \"Thomas Klein\"\n}, {\n  id: 4,\n  name: \"Mehmet Yilmaz\"\n}, {\n  id: 5,\n  name: \"Stefan Wagner\"\n}, {\n  id: 6,\n  name: \"Marco Bauer\"\n}, {\n  id: 7,\n  name: \"Peter Koch\"\n}, {\n  id: 8,\n  name: \"Klaus Fischer\"\n}]"
       },
       {
         "name": "aktuellerFahrer",
         "value": "appsmith.store.aktuellerFahrer || null"
       },
       {
-        "name": "aktuellerStandort",
-        "value": "appsmith.store.aktuellerStandort || null"
+        "name": "aktuellerAuflieger",
+        "value": "appsmith.store.aktuellerAuflieger || null"
       }
     ]
   }

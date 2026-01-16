@@ -9,7 +9,7 @@
     "variables": [
       {
         "name": "auftraege",
-        "value": "appsmith.store.auftraege || []"
+        "value": "getAuftraege.data || []"
       }
     ]
   }

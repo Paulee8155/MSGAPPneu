@@ -1,76 +1,86 @@
 export default {
-	// Initialisierung der Aufträge beim ersten Laden
-	initAuftraege: () => {
-		const stored = appsmith.store.auftraege;
-		if (!stored || stored.length === 0) {
-			// Beispiel-Auftrag für Max Schmidt
-			const initialAuftraege = [
-				{
-					id: "A001",
-					datum: "2026-01-14",
-					fahrerId: 1,
-					fahrerName: "Max Schmidt",
-					templateId: "T001",
-					templateName: "Brückenbau Standard",
-					materialienIds: ["M005", "M006", "M012", "M022", "M029", "M034", "M036", "M037", "M041", "M045", "M046", "M049"],
-					status: "offen"
-				}
-			];
-			storeValue("auftraege", initialAuftraege, false);
-		}
+	// Auftraege aus Google Sheets Query
+	auftraege: getAuftraege.data || [],
+
+	// Auftrag nach ID finden
+	getAuftragById(id) {
+		return this.auftraege.find(a => a.id === id);
 	},
 
-	// Alle Aufträge abrufen
-	auftraege: appsmith.store.auftraege || [],
+	// Aktiven Auftrag fuer einen bestimmten Auflieger finden
+	getAktivAuftragFuerAuflieger(aufliegerId) {
+		return this.auftraege.find(a =>
+			a.zugewiesenerAuflieger === aufliegerId &&
+			a.status === "Aktiv"
+		);
+	},
 
-	// Neuen Auftrag erstellen
-	createAuftrag: async (datum, fahrerId, fahrerName, templateId, templateName, materialienIds) => {
-		// Hole aktuelle Aufträge aus dem Store
-		const currentAuftraege = appsmith.store.auftraege || [];
+	// KERNFUNKTION: Auflieger-Beladung pruefen (Soll-Ist-Vergleich)
+	checkAufliegerBeladung(auftragId, aufliegerId) {
+		const auftrag = this.getAuftragById(auftragId);
+		if (!auftrag) return [];
 
-		// Nächste Auftragsnummer
-		const existingIds = currentAuftraege.map(a => parseInt(a.id.substring(1)));
-		const nextNum = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
-		const id = "A" + String(nextNum).padStart(3, "0");
+		// Benoetigte Material-IDs aus String parsen
+		const benoetigtIds = auftrag.benoetigteMaterialien.split(",").map(s => s.trim());
 
-		const auftrag = {
-			id: id,
-			datum: datum,
-			fahrerId: fahrerId,
-			fahrerName: fahrerName,
-			templateId: templateId,
-			templateName: templateName,
-			materialienIds: materialienIds,
-			status: "offen"
+		// Fuer jedes Material pruefen: Ist es auf dem Auflieger?
+		return benoetigtIds.map(matId => {
+			const material = MaterialData.getMaterialById(matId);
+			if (!material) {
+				return {
+					id: matId,
+					name: "UNBEKANNT",
+					status: "FEHLT",
+					bildUrl: null,
+					aktuellerStandort: null,
+					aktuellerStandortName: "Unbekannt"
+				};
+			}
+
+			const istAufAuflieger = material.currentLocationId === aufliegerId;
+
+			return {
+				id: material.id,
+				name: material.name,
+				bildUrl: material.bildUrl,
+				aktuellerStandort: material.currentLocationId,
+				aktuellerStandortName: StandortData.getStandortName(material.currentLocationId),
+				status: istAufAuflieger ? "GELADEN" : "FEHLT"
+			};
+		});
+	},
+
+	// Fortschritt berechnen
+	getProgress(auftragId, aufliegerId) {
+		const beladung = this.checkAufliegerBeladung(auftragId, aufliegerId);
+		const geladen = beladung.filter(m => m.status === "GELADEN").length;
+		const gesamt = beladung.length;
+		return {
+			geladen: geladen,
+			gesamt: gesamt,
+			prozent: gesamt > 0 ? Math.round((geladen / gesamt) * 100) : 0
 		};
-
-		// Neuen Auftrag zum Store hinzufügen
-		const updatedAuftraege = [...currentAuftraege, auftrag];
-		await storeValue("auftraege", updatedAuftraege, false);
-
-		showAlert("✓ Auftrag " + id + " für " + fahrerName + " erstellt!", "success");
-		console.log("Neuer Auftrag erstellt:", auftrag);
-		console.log("Alle Aufträge:", appsmith.store.auftraege);
-
-		return auftrag;
 	},
 
-	// Auftrag für bestimmten Fahrer holen
-	getAuftragFuerFahrer(fahrerId) {
-		const auftraege = appsmith.store.auftraege || [];
-		return auftraege.find(a => a.fahrerId === fahrerId && a.status === "offen");
+	// Auftrag Status aendern
+	updateStatus: async (auftragId, neuerStatus) => {
+		const data = getAuftraege.data || [];
+		const index = data.findIndex(a => a.id === auftragId);
+		if (index === -1) return false;
+
+		const rowIndex = index + 2;
+
+		await updateAuftragStatus.run({
+			rowIndex: rowIndex,
+			status: neuerStatus
+		});
+		await getAuftraege.run();
+		showAlert("Auftrag Status geaendert: " + neuerStatus, "success");
+		return true;
 	},
 
-	// Auftrag abschließen
-	closeAuftrag: async (auftragId) => {
-		const auftraege = appsmith.store.auftraege || [];
-		const auftrag = auftraege.find(a => a.id === auftragId);
-		if (auftrag) {
-			auftrag.status = "abgeschlossen";
-			await storeValue("auftraege", auftraege, false);
-			showAlert("✓ Auftrag " + auftragId + " abgeschlossen!", "success");
-			return true;
-		}
-		return false;
+	// Daten neu laden
+	refresh: async () => {
+		await getAuftraege.run();
 	}
 }

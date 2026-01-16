@@ -1,47 +1,53 @@
 export default {
-	// Material-Status-Übersicht
+	// Material-Status-Uebersicht basierend auf Location is Truth
 	getMaterialStatusUebersicht() {
-		const materialien = appsmith.store.materialien || [];
+		const materialien = getMaterialien.data || [];
+		const standorte = getStandorte.data || [];
 
-		const verfuegbar = materialien.filter(m =>
-			!m.gescannt &&
-			(m.standort.includes('Lager') || m.standort.includes('Außenlager') || m.standort.includes('Werkstatt'))
-		).length;
+		// Gruppieren nach Standort-Typ
+		let inLager = 0;
+		let aufAuflieger = 0;
+		let aufKran = 0;
+		let defekt = 0;
 
-		const aufFahrzeugen = materialien.filter(m =>
-			m.standort.includes('LKW') ||
-			m.standort.includes('Auflieger') ||
-			m.standort.includes('Kran')
-		).length;
+		materialien.forEach(m => {
+			const standort = standorte.find(s => s.id === m.currentLocationId);
+			if (!standort) return;
 
-		const imEinsatz = materialien.filter(m => m.gescannt).length;
-
-		const nichtGefunden = materialien.filter(m =>
-			!m.standort ||
-			m.standort === 'Unbekannt' ||
-			m.standort === ''
-		).length;
+			if (m.status === "Defekt") {
+				defekt++;
+			} else if (standort.typ === "Lager" || standort.typ === "Werkstatt") {
+				inLager++;
+			} else if (standort.typ === "Auflieger") {
+				aufAuflieger++;
+			} else if (standort.typ === "Kran") {
+				aufKran++;
+			}
+		});
 
 		return {
-			verfuegbar,
-			aufFahrzeugen,
-			imEinsatz,
-			nichtGefunden,
+			inLager,
+			aufAuflieger,
+			aufKran,
+			defekt,
 			gesamt: materialien.length
 		};
 	},
 
 	// Standort-Verteilung: Wo ist wie viel Material?
 	getStandortVerteilung() {
-		const materialien = appsmith.store.materialien || [];
+		const materialien = getMaterialien.data || [];
+		const standorte = getStandorte.data || [];
 		const verteilung = {};
 
 		materialien.forEach(m => {
-			const standort = m.standort || 'Unbekannt';
-			if (!verteilung[standort]) {
-				verteilung[standort] = 0;
+			const standort = standorte.find(s => s.id === m.currentLocationId);
+			const standortName = standort ? standort.bezeichnung : m.currentLocationId;
+
+			if (!verteilung[standortName]) {
+				verteilung[standortName] = 0;
 			}
-			verteilung[standort]++;
+			verteilung[standortName]++;
 		});
 
 		// Sortiere nach Anzahl (absteigend)
@@ -56,32 +62,42 @@ export default {
 			return [];
 		}
 
-		const materialien = appsmith.store.materialien || [];
+		const materialien = getMaterialien.data || [];
+		const standorte = getStandorte.data || [];
 		const begriff = suchbegriff.toLowerCase();
 
-		return materialien.filter(m =>
-			m.id.toLowerCase().includes(begriff) ||
-			m.name.toLowerCase().includes(begriff) ||
-			m.kategorie.toLowerCase().includes(begriff) ||
-			m.standort.toLowerCase().includes(begriff)
-		);
+		return materialien.filter(m => {
+			const standort = standorte.find(s => s.id === m.currentLocationId);
+			const standortName = standort ? standort.bezeichnung : m.currentLocationId;
+
+			return m.id.toLowerCase().includes(begriff) ||
+				m.name.toLowerCase().includes(begriff) ||
+				m.kategorie.toLowerCase().includes(begriff) ||
+				standortName.toLowerCase().includes(begriff);
+		}).map(m => {
+			const standort = standorte.find(s => s.id === m.currentLocationId);
+			return {
+				...m,
+				standortName: standort ? standort.bezeichnung : m.currentLocationId
+			};
+		});
 	},
 
 	// Kategorie-Breakdown
 	getKategorieUebersicht() {
-		const materialien = appsmith.store.materialien || [];
+		const materialien = getMaterialien.data || [];
 		const kategorien = {};
 
 		materialien.forEach(m => {
 			const kat = m.kategorie || 'Sonstiges';
 			if (!kategorien[kat]) {
-				kategorien[kat] = { gesamt: 0, verfuegbar: 0, imEinsatz: 0 };
+				kategorien[kat] = { gesamt: 0, ok: 0, defekt: 0 };
 			}
 			kategorien[kat].gesamt++;
-			if (m.gescannt) {
-				kategorien[kat].imEinsatz++;
+			if (m.status === "Defekt") {
+				kategorien[kat].defekt++;
 			} else {
-				kategorien[kat].verfuegbar++;
+				kategorien[kat].ok++;
 			}
 		});
 
@@ -90,91 +106,44 @@ export default {
 			.sort((a, b) => b.gesamt - a.gesamt);
 	},
 
-	// Gesamtgewicht berechnen
-	getGesamtGewicht() {
-		const materialien = appsmith.store.materialien || [];
-		const gesamt = materialien.reduce((sum, m) => sum + (m.gewicht || 0), 0);
-		const imEinsatz = materialien
-			.filter(m => m.gescannt)
-			.reduce((sum, m) => sum + (m.gewicht || 0), 0);
-		const verfuegbar = gesamt - imEinsatz;
+	// Auflieger-Status: Was ist auf welchem Auflieger?
+	getAufliegerStatus() {
+		const materialien = getMaterialien.data || [];
+		const standorte = getStandorte.data || [];
+		const auflieger = standorte.filter(s => s.typ === "Auflieger");
 
-		return {
-			gesamt,
-			imEinsatz,
-			verfuegbar
-		};
+		return auflieger.map(a => {
+			const aufliegerMaterialien = materialien.filter(m => m.currentLocationId === a.id);
+			return {
+				id: a.id,
+				bezeichnung: a.bezeichnung,
+				anzahl: aufliegerMaterialien.length,
+				gesamtGewicht: aufliegerMaterialien.reduce((sum, m) => sum + (parseInt(m.gewicht) || 0), 0),
+				materialien: aufliegerMaterialien
+			};
+		}).sort((a, b) => a.bezeichnung.localeCompare(b.bezeichnung));
 	},
 
-	// Lager-Status: Was ist wo im Lager?
-	getLagerStatus() {
-		const materialien = appsmith.store.materialien || [];
+	// Kran-Status: Was ist auf welchem Kran?
+	getKranStatus() {
+		const materialien = getMaterialien.data || [];
+		const standorte = getStandorte.data || [];
+		const kraene = standorte.filter(s => s.typ === "Kran");
 
-		const halle1 = materialien.filter(m => m.standort === 'Lager Halle 1');
-		const halle2 = materialien.filter(m => m.standort === 'Lager Halle 2');
-		const aussenlager = materialien.filter(m => m.standort === 'Außenlager');
-		const werkstatt = materialien.filter(m => m.standort === 'Werkstatt');
-
-		return {
-			halle1: { anzahl: halle1.length, materialien: halle1 },
-			halle2: { anzahl: halle2.length, materialien: halle2 },
-			aussenlager: { anzahl: aussenlager.length, materialien: aussenlager },
-			werkstatt: { anzahl: werkstatt.length, materialien: werkstatt }
-		};
+		return kraene.map(k => {
+			const kranMaterialien = materialien.filter(m => m.currentLocationId === k.id);
+			return {
+				id: k.id,
+				bezeichnung: k.bezeichnung,
+				anzahl: kranMaterialien.length,
+				materialien: kranMaterialien
+			};
+		}).sort((a, b) => a.bezeichnung.localeCompare(b.bezeichnung));
 	},
 
-	// Fahrzeug-Status: Was ist auf welchem Fahrzeug?
-	getFahrzeugStatus() {
-		const materialien = appsmith.store.materialien || [];
-		const fahrzeuge = {};
-
-		materialien.forEach(m => {
-			const standort = m.standort;
-			// Nur Fahrzeuge (LKW, Auflieger, Kran)
-			if (standort.includes('LKW') || standort.includes('Auflieger') || standort.includes('Kran')) {
-				if (!fahrzeuge[standort]) {
-					fahrzeuge[standort] = [];
-				}
-				fahrzeuge[standort].push(m);
-			}
-		});
-
-		return Object.entries(fahrzeuge)
-			.map(([fahrzeug, materialien]) => ({
-				fahrzeug,
-				anzahl: materialien.length,
-				gesamtGewicht: materialien.reduce((sum, m) => sum + (m.gewicht || 0), 0),
-				materialien
-			}))
-			.sort((a, b) => a.fahrzeug.localeCompare(b.fahrzeug));
-	},
-
-	// ========== HISTORIE-FUNKTIONEN ==========
-
-	// Letzte Scan-Aktivitäten
-	getRecentScans(limit = 10) {
-		return HistorieData.getRecentScans(limit).map(entry => ({
-			...entry,
-			timestampFormatted: HistorieData.formatTimestamp(entry.timestamp)
-		}));
-	},
-
-	// Top Scanner heute
-	getTopScannerHeute() {
-		return HistorieData.getFahrerAktivitaetHeute();
-	},
-
-	// Material-Historie für Detailansicht
-	getMaterialHistorieFormatted(materialId, limit = 10) {
-		return HistorieData.getMaterialHistorie(materialId, limit).map(entry => ({
-			...entry,
-			timestampFormatted: HistorieData.formatTimestamp(entry.timestamp)
-		}));
-	},
-
-	// Historie-Statistiken
-	getHistorieStats() {
-		return HistorieData.getStatistiken();
+	// Letzte Historie-Eintraege
+	getRecentHistorie(limit = 10) {
+		const historie = getHistorie.data || [];
+		return historie.slice(0, limit);
 	}
 }
-
