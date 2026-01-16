@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69679ad93b277e0bf2bd9a2d_f5550338-ce0c-4004-81c3-a602f071b5c5",
-  "id": "Home_HistorieData.myFun2",
+  "gitSyncId": "69679ad93b277e0bf2bd9a2d_18cdd2a6-bfbe-439d-aa8d-955257aadc79",
+  "id": "Home_HistorieData.getStatistiken",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -10,7 +10,6 @@
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
-    "clientSideExecution": true,
     "collectionId": "Home_HistorieData",
     "confirmBeforeExecute": false,
     "datasource": {
@@ -23,8 +22,8 @@
         "key": "body"
       }
     ],
-    "fullyQualifiedName": "HistorieData.myFun2",
-    "name": "myFun2",
+    "fullyQualifiedName": "HistorieData.getStatistiken",
+    "name": "getStatistiken",
     "pageId": "Home",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false
