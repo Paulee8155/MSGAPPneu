@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 35,
+  "bottomRow": 34,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -46,7 +46,7 @@
   "text": "{{\n(() => {\n  const auftrag = AuftragsData.getAktivAuftragFuerAuflieger(FahrerData.aktuellerAuflieger?.id);\n  if (!auftrag) return \"Kein aktiver Auftrag\";\n  const progress = AuftragsData.getProgress(auftrag.id, FahrerData.aktuellerAuflieger.id);\n  return progress.geladen + \" von \" + progress.gesamt + \" gescannt (\" + progress.prozent + \"%)\";\n})()\n}}",
   "textAlign": "CENTER",
   "textColor": "#231F20",
-  "topRow": 31,
+  "topRow": 30,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
